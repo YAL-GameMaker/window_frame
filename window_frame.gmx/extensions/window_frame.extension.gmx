@@ -174,6 +174,76 @@
             <arg>1</arg>
           </args>
         </function>
+        <function>
+          <name>window_command_run_raw</name>
+          <externalName>window_command_run_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_hook_raw</name>
+          <externalName>window_command_hook_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_unhook_raw</name>
+          <externalName>window_command_unhook_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_get_active_raw</name>
+          <externalName>window_command_get_active_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_set_active_raw</name>
+          <externalName>window_command_set_active_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>3</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_check</name>
+          <externalName>window_command_check</externalName>
+          <kind>11</kind>
+          <help>window_command_check(button) : Returns whether the given button was pressed since the last call to this function.</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
       </functions>
       <constants/>
     </file>
@@ -256,8 +326,98 @@
             <arg>2</arg>
           </args>
         </function>
+        <function>
+          <name>window_command_hook</name>
+          <externalName>window_command_hook</externalName>
+          <kind>11</kind>
+          <help>window_command_hook(index) : Hooks the specified command </help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_unhook</name>
+          <externalName>window_command_unhook</externalName>
+          <kind>11</kind>
+          <help>window_command_unhook(index)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_run</name>
+          <externalName>window_command_run</externalName>
+          <kind>11</kind>
+          <help>window_command_run(index, param = 0)</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_command_get_active</name>
+          <externalName>window_command_get_active</externalName>
+          <kind>11</kind>
+          <help>window_command_get_active(command) : Returns whether the given command is currently available.</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_set_active</name>
+          <externalName>window_command_set_active</externalName>
+          <kind>11</kind>
+          <help>window_command_set_active(command, status:bool) : Enables/disables the command. Returns -1 if not possible.</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
       </functions>
-      <constants/>
+      <constants>
+        <constant>
+          <name>window_command_close</name>
+          <value>$F060</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>window_command_maximize</name>
+          <value>$F030</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>window_command_minimize</name>
+          <value>$F020</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>window_command_restore</name>
+          <value>$F120</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>window_command_resize</name>
+          <value>$F000</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>window_command_move</name>
+          <value>$F010</value>
+          <hidden>0</hidden>
+        </constant>
+        <constant>
+          <name>window_frame_is_ready</name>
+          <value>global.window_frame_ready</value>
+          <hidden>-1</hidden>
+        </constant>
+      </constants>
     </file>
     <file>
       <filename>window_frame_host.exe</filename>

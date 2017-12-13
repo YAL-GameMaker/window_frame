@@ -1,5 +1,6 @@
 #define window_frame_init
 /// ()
+//#window_frame_is_ready = global.window_frame_ready
 gml_pragma("global", "window_frame_init()");
 global.window_frame_await = 0;
 global.window_frame_ready = false;
@@ -85,6 +86,41 @@ if (argument0) {
 		window_frame_set_visible(true);
 	}
 }
+
+#define window_frame_get_fullscreen()
+/// ():
+return window_get_fullscreen();
+
+//#window_command_close = $F060:
+//#window_command_maximize = $F030:
+//#window_command_minimize = $F020:
+//#window_command_restore = $F120:
+//#window_command_resize = $F000:
+//#window_command_move = $F010:
+
+#define window_command_hook
+/// (index): Hooks the specified command 
+return window_command_hook_raw(argument0);
+
+#define window_command_unhook
+/// (index):
+return window_command_unhook_raw(argument0);
+
+#define window_command_run
+/// (index, param = 0):
+var wp = argument[0], lp;
+if (argument_count > 1) {
+	lp = argument[1];
+} else lp = 0;
+return window_command_run_raw(wp, lp);
+
+#define window_command_get_active
+/// (command): Returns whether the given command is currently available.
+return window_command_get_active_raw(argument0);
+
+#define window_command_set_active
+/// (command, status:bool): Enables/disables the command. Returns -1 if not possible.
+return window_command_set_active_raw(argument0, argument1);
 
 #define window_frame_cleanup
 window_frame_cleanup_raw();

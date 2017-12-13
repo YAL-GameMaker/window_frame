@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>was_ready = false;
+leaving = 0;
+</string>
           </argument>
         </arguments>
       </action>
@@ -48,6 +50,13 @@
           <argument>
             <kind>1</kind>
             <string>window_frame_update();
+if (window_frame_is_ready &amp;&amp; !was_ready) {
+    was_ready = true;
+    window_command_hook(window_command_close);
+}
+if (window_command_check(window_command_close)) {
+    leaving = 30;
+}
 if (window_frame_get_visible()) {
     var w = window_frame_get_width();
     var h = window_frame_get_height();
@@ -82,12 +91,16 @@ if (window_frame_get_visible()) {
             <kind>1</kind>
             <string>draw_set_font(fnt_test);
 draw_set_color(c_white);
-draw_text(0, 0, "Try things:"
+var s;
+if (leaving &gt; 0) {
+    s = "See you later!";
+    if (--leaving &lt;= 0) game_end();
+} else s = "Try things:"
     + "#1: Enable border"
     + "#2: Disable border"
     + "#3: Toggle fulscreen"
-    + "#" + string(window_get_width()) + "x" + string(window_get_height())
-);
+    + "#Size: " + string(window_get_width()) + "x" + string(window_get_height());
+draw_text(0, 0, s);
 if (keyboard_check_pressed(ord("1"))) window_frame_set_visible(true);
 if (keyboard_check_pressed(ord("2"))) window_frame_set_visible(false);
 if (keyboard_check_pressed(ord("3"))) {

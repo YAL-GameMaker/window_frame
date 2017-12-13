@@ -4,6 +4,12 @@
 #include <windows.h>
 #include <cstdlib>
 #include <stdio.h>
+#include <map>
+
+//
+bool window_command_direct = false;
+std::map<WPARAM, bool> window_command_hooks;
+std::map<WPARAM, bool> window_command_blocks;
 
 LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	switch (message) {
@@ -15,11 +21,48 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			//return TRUE; // not needed here..?
 		case WM_KEYDOWN: case WM_KEYUP: case WM_SETCURSOR: case WM_MOUSEMOVE:
 		case WM_HOTKEY: case WM_CHAR: case WM_MENUCHAR: case WM_INITMENUPOPUP:
-		case WM_SYSCHAR: case WM_SYSDEADCHAR: case WM_SYSKEYDOWN: case WM_SYSKEYUP:
+		case WM_SYSCHAR: case WM_SYSDEADCHAR: case WM_SYSKEYDOWN: case WM_SYSKEYUP: {
 			// forward keyboard events to game window:
 			HWND game = (HWND)GetWindowLongPtr(hWnd, GWL_USERDATA);
-			if (game != NULL) SendMessage(game, message, wParam, lParam);
+			if (game != nullptr) {
+				if (IsWindow(game)) {
+					SendMessage(game, message, wParam, lParam);
+				} else PostQuitMessage(0);
+			}
 			break;
+		};
+		case WM_SYSCOMMAND: {
+			if (window_command_direct) break;
+			auto cmd = wParam & ~15;
+			if (window_command_blocks.find(cmd) != window_command_blocks.end()) return TRUE;
+			auto q = window_command_hooks.find(cmd);
+			if (q != window_command_hooks.end()) {
+				HWND game = (HWND)GetWindowLongPtr(hWnd, GWL_USERDATA);
+				if (game != nullptr) {
+					if (IsWindow(game)) {
+						SendMessage(game, WM_APP + 1, wParam, lParam);
+					} else PostQuitMessage(0);
+				}
+				window_command_hooks[q->first] = true;
+				return TRUE;
+			}
+			break;
+		};
+		case WM_APP + 1: { // dispatch hook
+			window_command_direct = true;
+			SendMessage(hWnd, WM_SYSCOMMAND, wParam, lParam);
+			window_command_direct = false;
+			return TRUE;
+		};
+		case WM_APP + 2: { // block/unblock
+			switch (lParam) {
+				case 1: window_command_blocks[wParam] = true; break;
+				case 2: window_command_blocks.erase(wParam); break;
+				case 3: window_command_hooks[wParam] = false; break;
+				case 4: window_command_hooks.erase(wParam); break;
+			}
+			return TRUE;
+		};
 	}
 	return DefWindowProc(hWnd, message, wParam, lParam);
 }

@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include <Windows.h>
 #include <stdio.h>
+#include <map>
 
 #define dllx extern "C" __declspec(dllexport)
 #define trace(...) { printf(__VA_ARGS__); printf("\n"); fflush(stdout); }
@@ -76,6 +77,9 @@ HWND window_frame_host_hwnd = nullptr;
 HANDLE window_frame_host_proc = nullptr;
 HWND window_frame_game_hwnd = nullptr;
 bool window_frame_bound = false;
+//
+std::map<WPARAM, bool> window_command_hooks;
+std::map<WPARAM, bool> window_command_blocks;
 
 BOOL CALLBACK window_frame_enum_wnds(HWND hwnd, LPARAM param) {
 	DWORD thread = GetWindowThreadProcessId(hwnd, nullptr);
@@ -90,23 +94,13 @@ LRESULT window_frame_wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 	switch (msg) {
 		case WM_ERASEBKGND:
 			return TRUE;
+		case WM_APP + 1: // notify hook
+			window_command_hooks[wp] = true;
+			return TRUE;
 	}
 	return CallWindowProc(window_frame_wndproc_base, hwnd, msg, wp, lp);
 }
 
-BOOL window_frame_set_rect_impl(int x, int y, int w, int h, bool show) {
-	//
-	RECT rect;
-	rect.left = x; rect.right = x + w;
-	rect.top = y; rect.bottom = y + h;
-	AdjustWindowRect(&rect, GetWindowLong(window_frame_host_hwnd, GWL_STYLE), false);
-	x = rect.left; w = rect.right - x;
-	y = rect.top; h = rect.bottom - y;
-	//
-	if (show) {
-		return SetWindowPos(window_frame_host_hwnd, nullptr, x, y, w, h, SWP_SHOWWINDOW);
-	} else return MoveWindow(window_frame_host_hwnd, x, y, w, h, TRUE);
-}
 RECT window_frame_get_rect() {
 	HWND hwnd = window_frame_host_hwnd;
 	RECT wr, cr, ar;
@@ -121,7 +115,6 @@ RECT window_frame_get_rect() {
 	wr.bottom -= (ar.bottom - cr.bottom);
 	return wr;
 }
-
 bool window_frame_set_visible_impl(bool show, bool setvis) {
 	if (show == window_frame_bound) return true;
 	HWND hwnd = window_frame_game_hwnd;
@@ -145,6 +138,22 @@ bool window_frame_set_visible_impl(bool show, bool setvis) {
 dllx double window_frame_set_visible_raw(double visible) {
 	return window_frame_set_visible_impl(visible > 0.5, true);
 }
+
+#pragma region Window Rect
+BOOL window_frame_set_rect_impl(int x, int y, int w, int h, bool show) {
+	//
+	RECT rect;
+	rect.left = x; rect.right = x + w;
+	rect.top = y; rect.bottom = y + h;
+	AdjustWindowRect(&rect, GetWindowLong(window_frame_host_hwnd, GWL_STYLE), false);
+	x = rect.left; w = rect.right - x;
+	y = rect.top; h = rect.bottom - y;
+	//
+	if (show) {
+		return SetWindowPos(window_frame_host_hwnd, nullptr, x, y, w, h, SWP_SHOWWINDOW);
+	} else return MoveWindow(window_frame_host_hwnd, x, y, w, h, TRUE);
+}
+
 ///
 dllx double window_frame_get_width() {
 	RECT rect = window_frame_get_rect();
@@ -178,6 +187,9 @@ dllx double window_frame_get_rect_raw(char* cbuf) {
 dllx double window_frame_set_rect(double x, double y, double w, double h) {
 	return window_frame_set_rect_impl((int)x, (int)y, (int)w, (int)h, false) != 0;
 }
+#pragma endregion
+
+#pragma region Window Caption
 ///
 dllx double window_frame_set_region(double x, double y, double w, double h) {
 	if (window_frame_bound) {
@@ -189,6 +201,95 @@ dllx double window_frame_set_region(double x, double y, double w, double h) {
 dllx double window_frame_set_caption(char* text) {
 	return SetWindowText(window_frame_host_hwnd, utf8.proc(text));
 }
+#pragma endregion
+
+#pragma region Window Commands
+dllx double window_command_run_raw(double wp, double lp) {
+	return SendMessage(window_frame_host_hwnd, WM_APP+1, (WPARAM)wp, (LPARAM)lp);
+}
+dllx double window_command_hook_raw(double button) {
+	auto wb = (WPARAM)button;
+	if (window_command_hooks.find(wb) != window_command_hooks.end()) return 1;
+	window_command_hooks[wb] = false;
+	SendMessage(window_frame_host_hwnd, WM_APP + 2, wb, 3);
+	return 1;
+}
+dllx double window_command_unhook_raw(double button) {
+	auto wb = (WPARAM)button;
+	auto q = window_command_hooks.find(wb);
+	if (q != window_command_hooks.end()) {
+		window_command_hooks.erase(q);
+		SendMessage(window_frame_host_hwnd, WM_APP + 2, wb, 4);
+	}
+	return 1;
+}
+long window_command_long(double cmd) {
+	switch ((WPARAM)cmd) {
+		case SC_SIZE: return WS_SIZEBOX;
+		case SC_MINIMIZE: return WS_MINIMIZEBOX;
+		case SC_MAXIMIZE: return WS_MAXIMIZEBOX;
+		default: return -1;
+	}
+}
+int window_command_acc_active(double cmd, double _val) {
+	auto hwnd = window_frame_host_hwnd;
+	auto wcmd = (WPARAM)cmd;
+	auto get = _val < 0;
+	auto set = _val > 0;
+	switch (wcmd) {
+		case SC_MOVE: case SC_SIZE: case SC_MOUSEMENU: {
+			auto q = window_command_blocks.find(wcmd);
+			if (get) return q == window_command_blocks.end();
+			auto z = q != window_command_blocks.end();
+			if (set) {
+				if (z) {
+					window_command_blocks.erase(q);
+					SendMessage(window_frame_host_hwnd, WM_APP + 2, wcmd, 1);
+				}
+			} else {
+				if (!z) {
+					window_command_blocks[wcmd] = true;
+					SendMessage(window_frame_host_hwnd, WM_APP + 2, wcmd, 2);
+				}
+			}
+			return 1;
+		}; break;
+		case SC_CLOSE: {
+			auto menu = GetSystemMenu(hwnd, false);
+			if (get) return (GetMenuState(menu, wcmd, MF_BYCOMMAND) & MF_GRAYED) == 0;
+			if (EnableMenuItem(menu, wcmd, MF_BYCOMMAND | (set ? MF_ENABLED : MF_GRAYED)) < 0) return -1;
+			return 1;
+		}; break;
+		default: {
+			auto cl = window_command_long(cmd);
+			if (cl < 0) return -1;
+			auto wl = GetWindowLong(hwnd, GWL_STYLE);
+			if (get) return (wl & cl) == cl;
+			if (set) wl |= cl; else wl &= ~cl;
+			SetWindowLong(hwnd, GWL_STYLE, wl);
+			return 1;
+		}; break;
+	}
+}
+dllx double window_command_get_active_raw(char* cwnd, double cmd) {
+	return window_command_acc_active(cmd, -1);
+}
+dllx double window_command_set_active_raw(char* cwnd, double cmd, double val) {
+	return window_command_acc_active(cmd, val > 0.5 ? 1 : 0);
+}
+/// Returns whether the given button was pressed since the last call to this function.
+dllx double window_command_check(double button) {
+	auto wb = (WPARAM)button;
+	auto q = window_command_hooks.find(wb);
+	if (q != window_command_hooks.end()) {
+		if (q->second) {
+			window_command_hooks[wb] = false;
+			return 1;
+		} else return 0;
+	} else return 0;
+}
+#pragma endregion
+
 
 dllx double window_frame_init_raw(char* cwnd, char* cbuf) {
 	HWND hwnd = (HWND)cwnd;
