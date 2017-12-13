@@ -61,7 +61,7 @@
           <name>window_frame_set_rect</name>
           <externalName>window_frame_set_rect</externalName>
           <kind>11</kind>
-          <help></help>
+          <help>window_frame_set_rect(x, y, w, h)</help>
           <returnType>2</returnType>
           <argCount>4</argCount>
           <args>
@@ -75,7 +75,7 @@
           <name>window_frame_get_width</name>
           <externalName>window_frame_get_width</externalName>
           <kind>11</kind>
-          <help></help>
+          <help>window_frame_get_width()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -84,7 +84,7 @@
           <name>window_frame_get_height</name>
           <externalName>window_frame_get_height</externalName>
           <kind>11</kind>
-          <help></help>
+          <help>window_frame_get_height()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -93,7 +93,7 @@
           <name>window_frame_get_x</name>
           <externalName>window_frame_get_x</externalName>
           <kind>11</kind>
-          <help></help>
+          <help>window_frame_get_x()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -102,10 +102,77 @@
           <name>window_frame_get_y</name>
           <externalName>window_frame_get_y</externalName>
           <kind>11</kind>
+          <help>window_frame_get_y()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_set_visible</name>
+          <externalName>window_frame_set_visible</externalName>
+          <kind>11</kind>
+          <help>window_frame_set_visible(visible)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_caption</name>
+          <externalName>window_frame_set_caption</externalName>
+          <kind>11</kind>
+          <help>window_frame_set_caption(text)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_cleanup_raw</name>
+          <externalName>window_frame_cleanup_raw</externalName>
+          <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
+        </function>
+        <function>
+          <name>window_frame_set_visible_raw</name>
+          <externalName>window_frame_set_visible_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_region</name>
+          <externalName>window_frame_set_region</externalName>
+          <kind>11</kind>
+          <help>window_frame_set_region(x, y, w, h)</help>
+          <returnType>2</returnType>
+          <argCount>4</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_get_rect_raw</name>
+          <externalName>window_frame_get_rect_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
         </function>
       </functions>
       <constants/>
@@ -113,13 +180,13 @@
     <file>
       <filename>window_frame.gml</filename>
       <origname>extensions\gml.gml</origname>
-      <init></init>
-      <final></final>
+      <init>window_frame_init</init>
+      <final>window_frame_cleanup</final>
       <kind>2</kind>
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>9223372036854775807</CopyToMask>
+          <CopyToMask>105554172285166</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
@@ -128,10 +195,66 @@
           <name>window_frame_init</name>
           <externalName>window_frame_init</externalName>
           <kind>11</kind>
-          <help>window_frame_init() : _</help>
+          <help></help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
+        </function>
+        <function>
+          <name>window_frame_update</name>
+          <externalName>window_frame_update</externalName>
+          <kind>11</kind>
+          <help>window_frame_update() : Should be called once per frame.</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_cleanup</name>
+          <externalName>window_frame_cleanup</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_get_visible</name>
+          <externalName>window_frame_get_visible</externalName>
+          <kind>11</kind>
+          <help>window_frame_get_visible() : Returns whether the frame is currently on.</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_set_visible</name>
+          <externalName>window_frame_set_visible</externalName>
+          <kind>11</kind>
+          <help>window_frame_set_visible() : Turns the frame on/off.</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_get_rect</name>
+          <externalName>window_frame_get_rect</externalName>
+          <kind>11</kind>
+          <help>window_frame_get_rect() : Returns an array of x, y, width, height</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_set_fullscreen</name>
+          <externalName>window_frame_set_fullscreen</externalName>
+          <kind>11</kind>
+          <help>window_frame_set_fullscreen(full)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
         </function>
       </functions>
       <constants/>

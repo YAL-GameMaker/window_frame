@@ -1,7 +1,6 @@
 .vs/
 */Configs/*/*
 */extensions/*/*.cpp
-*/extensions/*/*.dll
 */Release/
 Release/
 export/*.gmez

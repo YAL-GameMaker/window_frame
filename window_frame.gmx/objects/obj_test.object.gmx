@@ -25,8 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>init = 3;
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -48,11 +47,16 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (init &amp;&amp; !--init) {
-    trace(window_frame_init());
-}
-if (!window_get_fullscreen()) {
-    
+            <string>window_frame_update();
+if (window_frame_get_visible()) {
+    var w = window_frame_get_width();
+    var h = window_frame_get_height();
+    if (window_get_width() != w || window_get_height() != h) {
+        room_width = w;
+        room_height = h;
+        window_frame_set_region(0, 0, w, h);
+        surface_resize(application_surface, w, h);
+    }
 }
 </string>
           </argument>
@@ -78,10 +82,18 @@ if (!window_get_fullscreen()) {
             <kind>1</kind>
             <string>draw_set_font(fnt_test);
 draw_set_color(c_white);
-draw_text(0, 0, string(current_time)
-    + "#" + string(keyboard_check(vk_space))
-    + "#" + string(mouse_check_button(mb_left))
+draw_text(0, 0, "Try things:"
+    + "#1: Enable border"
+    + "#2: Disable border"
+    + "#3: Toggle fulscreen"
+    + "#" + string(window_get_width()) + "x" + string(window_get_height())
 );
+if (keyboard_check_pressed(ord("1"))) window_frame_set_visible(true);
+if (keyboard_check_pressed(ord("2"))) window_frame_set_visible(false);
+if (keyboard_check_pressed(ord("3"))) {
+    window_frame_set_fullscreen(!window_get_fullscreen());
+}
+draw_circle(mouse_x, mouse_y, 10, true);
 </string>
           </argument>
         </arguments>

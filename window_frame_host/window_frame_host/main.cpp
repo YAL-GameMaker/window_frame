@@ -13,7 +13,7 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		case WM_ERASEBKGND:
 			break;
 			//return TRUE; // not needed here..?
-		case WM_KEYDOWN: case WM_KEYUP:
+		case WM_KEYDOWN: case WM_KEYUP: case WM_SETCURSOR: case WM_MOUSEMOVE:
 		case WM_HOTKEY: case WM_CHAR: case WM_MENUCHAR: case WM_INITMENUPOPUP:
 		case WM_SYSCHAR: case WM_SYSDEADCHAR: case WM_SYSKEYDOWN: case WM_SYSKEYUP:
 			// forward keyboard events to game window:
