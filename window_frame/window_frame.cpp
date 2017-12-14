@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <map>
+#include "window_frame_interop.h"
 
 #define dllx extern "C" __declspec(dllexport)
 #define trace(...) { printf(__VA_ARGS__); printf("\n"); fflush(stdout); }
@@ -80,6 +81,7 @@ bool window_frame_bound = false;
 //
 std::map<WPARAM, bool> window_command_hooks;
 std::map<WPARAM, bool> window_command_blocks;
+#define window_frame_host_config(type, lParam) SendMessage(window_frame_host_hwnd, WFI_WM_HOST_CONFIG, type, lParam);
 
 BOOL CALLBACK window_frame_enum_wnds(HWND hwnd, LPARAM param) {
 	DWORD thread = GetWindowThreadProcessId(hwnd, nullptr);
@@ -94,7 +96,7 @@ LRESULT window_frame_wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 	switch (msg) {
 		case WM_ERASEBKGND:
 			return TRUE;
-		case WM_APP + 1: // notify hook
+		case WFI_WM_CLIENT_NOTIFY_HOOK: // notify hook
 			window_command_hooks[wp] = true;
 			return TRUE;
 	}
@@ -205,13 +207,13 @@ dllx double window_frame_set_caption(char* text) {
 
 #pragma region Window Commands
 dllx double window_command_run_raw(double wp, double lp) {
-	return SendMessage(window_frame_host_hwnd, WM_APP+1, (WPARAM)wp, (LPARAM)lp);
+	return SendMessage(window_frame_host_hwnd, WFI_WM_HOST_EXEC_SYSCOMMAND, (WPARAM)wp, (LPARAM)lp);
 }
 dllx double window_command_hook_raw(double button) {
 	auto wb = (WPARAM)button;
 	if (window_command_hooks.find(wb) != window_command_hooks.end()) return 1;
 	window_command_hooks[wb] = false;
-	SendMessage(window_frame_host_hwnd, WM_APP + 2, wb, 3);
+	window_frame_host_config(WFI_HOST_CONF_HOOK_SYSCOMMAND, wb);
 	return 1;
 }
 dllx double window_command_unhook_raw(double button) {
@@ -219,13 +221,13 @@ dllx double window_command_unhook_raw(double button) {
 	auto q = window_command_hooks.find(wb);
 	if (q != window_command_hooks.end()) {
 		window_command_hooks.erase(q);
-		SendMessage(window_frame_host_hwnd, WM_APP + 2, wb, 4);
+		window_frame_host_config(WFI_HOST_CONF_UNHOOK_SYSCOMMAND, wb);
 	}
 	return 1;
 }
 long window_command_long(double cmd) {
 	switch ((WPARAM)cmd) {
-		case SC_SIZE: return WS_SIZEBOX;
+		case SC_SIZE: return WS_THICKFRAME;
 		case SC_MINIMIZE: return WS_MINIMIZEBOX;
 		case SC_MAXIMIZE: return WS_MAXIMIZEBOX;
 		default: return -1;
@@ -233,23 +235,24 @@ long window_command_long(double cmd) {
 }
 int window_command_acc_active(double cmd, double _val) {
 	auto hwnd = window_frame_host_hwnd;
+	if (hwnd == nullptr) return -1;
 	auto wcmd = (WPARAM)cmd;
 	auto get = _val < 0;
 	auto set = _val > 0;
 	switch (wcmd) {
-		case SC_MOVE: case SC_SIZE: case SC_MOUSEMENU: {
+		case SC_MOVE: case SC_MOUSEMENU: {
 			auto q = window_command_blocks.find(wcmd);
 			if (get) return q == window_command_blocks.end();
 			auto z = q != window_command_blocks.end();
 			if (set) {
 				if (z) {
 					window_command_blocks.erase(q);
-					SendMessage(window_frame_host_hwnd, WM_APP + 2, wcmd, 1);
+					window_frame_host_config(WFI_HOST_CONF_ALLOW_SYSCOMMAND, wcmd);
 				}
 			} else {
 				if (!z) {
 					window_command_blocks[wcmd] = true;
-					SendMessage(window_frame_host_hwnd, WM_APP + 2, wcmd, 2);
+					window_frame_host_config(WFI_HOST_CONF_BLOCK_SYSCOMMAND, wcmd);
 				}
 			}
 			return 1;
@@ -271,10 +274,10 @@ int window_command_acc_active(double cmd, double _val) {
 		}; break;
 	}
 }
-dllx double window_command_get_active_raw(char* cwnd, double cmd) {
+dllx double window_command_get_active_raw(double cmd) {
 	return window_command_acc_active(cmd, -1);
 }
-dllx double window_command_set_active_raw(char* cwnd, double cmd, double val) {
+dllx double window_command_set_active_raw(double cmd, double val) {
 	return window_command_acc_active(cmd, val > 0.5 ? 1 : 0);
 }
 /// Returns whether the given button was pressed since the last call to this function.
@@ -287,6 +290,26 @@ dllx double window_command_check(double button) {
 			return 1;
 		} else return 0;
 	} else return 0;
+}
+#pragma endregion
+
+#pragma region Extras
+///
+dllx double window_frame_set_background(double color) {
+	window_frame_host_config(WFI_HOST_CONF_SET_BACKGROUND, (int)color);
+	return true;
+}
+///
+dllx double window_frame_set_min_size(double minWidth, double minHeight) {
+	window_frame_host_config(WFI_HOST_CONF_SET_MIN_WIDTH, (int)minWidth);
+	window_frame_host_config(WFI_HOST_CONF_SET_MIN_HEIGHT, (int)minHeight);
+	return true;
+}
+///
+dllx double window_frame_set_max_size(double maxWidth, double maxHeight) {
+	window_frame_host_config(WFI_HOST_CONF_SET_MAX_WIDTH, (int)maxWidth);
+	window_frame_host_config(WFI_HOST_CONF_SET_MAX_HEIGHT, (int)maxHeight);
+	return true;
 }
 #pragma endregion
 

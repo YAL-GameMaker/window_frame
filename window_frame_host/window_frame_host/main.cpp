@@ -5,20 +5,44 @@
 #include <cstdlib>
 #include <stdio.h>
 #include <map>
+#include "../../window_frame/window_frame_interop.h"
+
+#define SetWindowTextAF(hwnd, ...) { char b[256]; sprintf(b, __VA_ARGS__); SetWindowTextA(hwnd, b); }
 
 //
 bool window_command_direct = false;
 std::map<WPARAM, bool> window_command_hooks;
 std::map<WPARAM, bool> window_command_blocks;
+//
+int minWidth = 32;
+int minHeight = 32;
+int maxWidth = -1;
+int maxHeight = -1;
+HBRUSH background = nullptr;
 
 LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	switch (message) {
-		case WM_DESTROY:
+		case WM_GETMINMAXINFO: {
+			MINMAXINFO* mxi = (MINMAXINFO*)lParam;
+			if (minWidth >= 0) mxi->ptMinTrackSize.x = minWidth;
+			if (minHeight >= 0) mxi->ptMinTrackSize.y = minHeight;
+			if (minWidth >= 0) mxi->ptMinTrackSize.x = minWidth;
+			if (minHeight >= 0) mxi->ptMinTrackSize.y = minHeight;
+			return 0;
+		};
+		case WM_DESTROY: {
 			PostQuitMessage(0);
 			return FALSE;
-		case WM_ERASEBKGND:
-			break;
+		};
+		case WM_ERASEBKGND: {
+			if (background == nullptr) break;
+			HDC hdc = (HDC)wParam;
+			RECT cr; GetClientRect(hWnd, &cr);
+			SelectObject(hdc, background);
+			FillRect(hdc, &cr, background);
+			return TRUE;
 			//return TRUE; // not needed here..?
+		};
 		case WM_KEYDOWN: case WM_KEYUP: case WM_SETCURSOR: case WM_MOUSEMOVE:
 		case WM_HOTKEY: case WM_CHAR: case WM_MENUCHAR: case WM_INITMENUPOPUP:
 		case WM_SYSCHAR: case WM_SYSDEADCHAR: case WM_SYSKEYDOWN: case WM_SYSKEYUP: {
@@ -40,7 +64,7 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 				HWND game = (HWND)GetWindowLongPtr(hWnd, GWL_USERDATA);
 				if (game != nullptr) {
 					if (IsWindow(game)) {
-						SendMessage(game, WM_APP + 1, wParam, lParam);
+						SendMessage(game, WFI_WM_CLIENT_NOTIFY_HOOK, wParam, lParam);
 					} else PostQuitMessage(0);
 				}
 				window_command_hooks[q->first] = true;
@@ -48,18 +72,32 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			}
 			break;
 		};
-		case WM_APP + 1: { // dispatch hook
+		case WFI_WM_HOST_EXEC_SYSCOMMAND: { // dispatch hook
 			window_command_direct = true;
 			SendMessage(hWnd, WM_SYSCOMMAND, wParam, lParam);
 			window_command_direct = false;
 			return TRUE;
 		};
 		case WM_APP + 2: { // block/unblock
-			switch (lParam) {
-				case 1: window_command_blocks[wParam] = true; break;
-				case 2: window_command_blocks.erase(wParam); break;
-				case 3: window_command_hooks[wParam] = false; break;
-				case 4: window_command_hooks.erase(wParam); break;
+			switch (wParam) {
+				case WFI_HOST_CONF_BLOCK_SYSCOMMAND: window_command_blocks[lParam] = true; break;
+				case WFI_HOST_CONF_ALLOW_SYSCOMMAND: window_command_blocks.erase(lParam); break;
+				case WFI_HOST_CONF_HOOK_SYSCOMMAND: window_command_hooks[lParam] = false; break;
+				case WFI_HOST_CONF_UNHOOK_SYSCOMMAND: window_command_hooks.erase(lParam); break;
+				case WFI_HOST_CONF_SET_BACKGROUND:
+					if (background != nullptr) DeleteObject(background);
+					if (lParam >= 0 && lParam <= 0xFFFFFF) {
+						background = CreateSolidBrush(RGB(
+							(lParam & 0xff),
+							(lParam >> 8) & 0xff,
+							(lParam >> 16) & 0xff
+						));
+					} else background = nullptr;
+					break;
+				case WFI_HOST_CONF_SET_MIN_WIDTH: minWidth = lParam; break;
+				case WFI_HOST_CONF_SET_MIN_HEIGHT: minHeight = lParam; break;
+				case WFI_HOST_CONF_SET_MAX_WIDTH: maxWidth = lParam; break;
+				case WFI_HOST_CONF_SET_MAX_HEIGHT: maxHeight = lParam; break;
 			}
 			return TRUE;
 		};
