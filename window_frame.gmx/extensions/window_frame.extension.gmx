@@ -3,7 +3,7 @@
   <name>window_frame</name>
   <version>1.0.0</version>
   <packageID></packageID>
-  <ProductID></ProductID>
+  <ProductID>ACBD3CFF4E539AD869A0E8E3B4B022DD</ProductID>
   <date>18/02/17</date>
   <license>Proprietary</license>
   <description></description>
@@ -25,11 +25,15 @@
   <iosThirdPartyFrameworks/>
   <ConfigOptions>
     <Config name="Default">
-      <CopyToMask>113497714299118</CopyToMask>
+      <CopyToMask>105554172285166</CopyToMask>
     </Config>
   </ConfigOptions>
   <androidPermissions/>
-  <IncludedResources/>
+  <IncludedResources>
+    <Resource>Objects\obj_window_frame_test</Resource>
+    <Resource>Rooms\rm_window_frame_test</Resource>
+    <Resource>Fonts\fnt_window_frame_test</Resource>
+  </IncludedResources>
   <files>
     <file>
       <filename>window_frame.dll</filename>
@@ -214,9 +218,8 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>2</argCount>
+          <argCount>1</argCount>
           <args>
-            <arg>1</arg>
             <arg>2</arg>
           </args>
         </function>
@@ -226,9 +229,8 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>3</argCount>
+          <argCount>2</argCount>
           <args>
-            <arg>1</arg>
             <arg>2</arg>
             <arg>2</arg>
           </args>
@@ -241,6 +243,41 @@
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_background</name>
+          <externalName>window_frame_set_background</externalName>
+          <kind>11</kind>
+          <help>window_frame_set_background(color)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_min_size</name>
+          <externalName>window_frame_set_min_size</externalName>
+          <kind>11</kind>
+          <help>window_frame_set_min_size(minWidth, minHeight)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_max_size</name>
+          <externalName>window_frame_set_max_size</externalName>
+          <kind>11</kind>
+          <help>window_frame_set_max_size(maxWidth, maxHeight)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
             <arg>2</arg>
           </args>
         </function>

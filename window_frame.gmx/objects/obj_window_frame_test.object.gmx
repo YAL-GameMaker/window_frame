@@ -50,20 +50,36 @@ leaving = 0;
           <argument>
             <kind>1</kind>
             <string>window_frame_update();
+// if the extension just finished readying up:
 if (window_frame_is_ready &amp;&amp; !was_ready) {
     was_ready = true;
+    // override the close button behaviour, as an example:
     window_command_hook(window_command_close);
+    //window_command_set_active(window_command_resize, 0); // can disable window resizing
+    //window_command_set_active(window_command_maximize, 0); // or ability to maximize window
+    //window_command_set_active(window_command_minimize, 0); // or ability to minimize window
+    window_frame_set_min_size(224, 192); // how small the window can be allowed to get
+    //window_frame_set_background(background_color); // if you don't fill the entire window
 }
+
+// if the close button was clicked (being overriden), close shortly:
 if (window_command_check(window_command_close)) {
     leaving = 30;
 }
+
+// resize the game to fit the container window if it's visible
+// (if you don't do window resizing, you don't need this)
 if (window_frame_get_visible()) {
     var w = window_frame_get_width();
     var h = window_frame_get_height();
-    if (window_get_width() != w || window_get_height() != h) {
-        room_width = w;
-        room_height = h;
+    if (w &gt; 0 &amp;&amp; h &gt; 0 &amp;&amp; surface_exists(application_surface)
+    &amp;&amp; (window_get_width() != w || window_get_height() != h)
+    ) {
+        // resize room (since we don't use views):
+        room_width = w; room_height = h;
+        // resize the game inside the frame-window to fit it's size:
         window_frame_set_region(0, 0, w, h);
+        // also resize application_surface:
         surface_resize(application_surface, w, h);
     }
 }
@@ -89,13 +105,14 @@ if (window_frame_get_visible()) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_font(fnt_test);
+            <string>draw_set_font(fnt_window_frame_test);
 draw_set_color(c_white);
 var s;
 if (leaving &gt; 0) {
     s = "See you later!";
     if (--leaving &lt;= 0) game_end();
-} else s = "Try things:"
+} else s = string_format(current_time / 1000, 0, 1) + "s"
+    + "#Try things:"
     + "#1: Enable border"
     + "#2: Disable border"
     + "#3: Toggle fulscreen"

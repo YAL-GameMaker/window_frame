@@ -10,17 +10,15 @@
   <sprites name="sprites"/>
   <backgrounds name="background"/>
   <paths name="paths"/>
-  <scripts name="scripts">
-    <script>scripts\trace.gml</script>
-  </scripts>
+  <scripts name="scripts"/>
   <fonts name="fonts">
-    <font>fonts\fnt_test</font>
+    <font>fonts\fnt_window_frame_test</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_test</object>
+    <object>objects\obj_window_frame_test</object>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_test</room>
+    <room>rooms\rm_window_frame_test</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
