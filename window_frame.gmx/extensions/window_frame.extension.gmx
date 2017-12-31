@@ -3,7 +3,7 @@
   <name>window_frame</name>
   <version>1.0.0</version>
   <packageID></packageID>
-  <ProductID>ACBD3CFF4E539AD869A0E8E3B4B022DD</ProductID>
+  <ProductID></ProductID>
   <date>18/02/17</date>
   <license>Proprietary</license>
   <description></description>
@@ -50,28 +50,13 @@
       <ProxyFiles/>
       <functions>
         <function>
-          <name>window_frame_init_raw</name>
-          <externalName>window_frame_init_raw</externalName>
+          <name>window_frame_set_visible_raw</name>
+          <externalName>window_frame_set_visible_raw</externalName>
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>2</argCount>
+          <argCount>1</argCount>
           <args>
-            <arg>1</arg>
-            <arg>1</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_set_rect</name>
-          <externalName>window_frame_set_rect</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_rect(x, y, w, h)</help>
-          <returnType>2</returnType>
-          <argCount>4</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-            <arg>2</arg>
             <arg>2</arg>
           </args>
         </function>
@@ -112,21 +97,10 @@
           <args/>
         </function>
         <function>
-          <name>window_frame_set_visible</name>
-          <externalName>window_frame_set_visible</externalName>
+          <name>window_frame_get_rect_raw</name>
+          <externalName>window_frame_get_rect_raw</externalName>
           <kind>11</kind>
-          <help>window_frame_set_visible(visible)</help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_set_caption</name>
-          <externalName>window_frame_set_caption</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_caption(text)</help>
+          <help></help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -134,22 +108,16 @@
           </args>
         </function>
         <function>
-          <name>window_frame_cleanup_raw</name>
-          <externalName>window_frame_cleanup_raw</externalName>
+          <name>window_frame_set_rect</name>
+          <externalName>window_frame_set_rect</externalName>
           <kind>11</kind>
-          <help></help>
+          <help>window_frame_set_rect(x, y, w, h)</help>
           <returnType>2</returnType>
-          <argCount>0</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>window_frame_set_visible_raw</name>
-          <externalName>window_frame_set_visible_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>4</argCount>
           <args>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
             <arg>2</arg>
           </args>
         </function>
@@ -168,10 +136,10 @@
           </args>
         </function>
         <function>
-          <name>window_frame_get_rect_raw</name>
-          <externalName>window_frame_get_rect_raw</externalName>
+          <name>window_frame_set_caption</name>
+          <externalName>window_frame_set_caption</externalName>
           <kind>11</kind>
-          <help></help>
+          <help>window_frame_set_caption(text)</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -281,6 +249,27 @@
             <arg>2</arg>
           </args>
         </function>
+        <function>
+          <name>window_frame_init_raw</name>
+          <externalName>window_frame_init_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_cleanup_raw</name>
+          <externalName>window_frame_cleanup_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
       </functions>
       <constants/>
     </file>
@@ -317,15 +306,6 @@
           <args/>
         </function>
         <function>
-          <name>window_frame_cleanup</name>
-          <externalName>window_frame_cleanup</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>0</argCount>
-          <args/>
-        </function>
-        <function>
           <name>window_frame_get_visible</name>
           <externalName>window_frame_get_visible</externalName>
           <kind>11</kind>
@@ -338,10 +318,12 @@
           <name>window_frame_set_visible</name>
           <externalName>window_frame_set_visible</externalName>
           <kind>11</kind>
-          <help>window_frame_set_visible() : Turns the frame on/off.</help>
+          <help>window_frame_set_visible(visible) : Turns the frame on/off.</help>
           <returnType>2</returnType>
-          <argCount>0</argCount>
-          <args/>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
         </function>
         <function>
           <name>window_frame_get_rect</name>
@@ -362,6 +344,15 @@
           <args>
             <arg>2</arg>
           </args>
+        </function>
+        <function>
+          <name>window_frame_get_fullscreen</name>
+          <externalName>window_frame_get_fullscreen</externalName>
+          <kind>11</kind>
+          <help>window_frame_get_fullscreen()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
         </function>
         <function>
           <name>window_command_hook</name>
@@ -417,8 +408,22 @@
             <arg>2</arg>
           </args>
         </function>
+        <function>
+          <name>window_frame_cleanup</name>
+          <externalName>window_frame_cleanup</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
       </functions>
       <constants>
+        <constant>
+          <name>window_frame_is_ready</name>
+          <value>global.window_frame_ready</value>
+          <hidden>-1</hidden>
+        </constant>
         <constant>
           <name>window_command_close</name>
           <value>$F060</value>
@@ -448,11 +453,6 @@
           <name>window_command_move</name>
           <value>$F010</value>
           <hidden>0</hidden>
-        </constant>
-        <constant>
-          <name>window_frame_is_ready</name>
-          <value>global.window_frame_ready</value>
-          <hidden>-1</hidden>
         </constant>
       </constants>
     </file>

@@ -49,7 +49,7 @@ if (global.window_frame_ready) {
 return global.window_frame_visible;
 
 #define window_frame_set_visible
-/// (): Turns the frame on/off.
+/// (visible): Turns the frame on/off.
 var z = argument0;
 global.window_frame_visible = z;
 if (!window_get_fullscreen()) {
@@ -87,7 +87,7 @@ if (argument0) {
 	}
 }
 
-#define window_frame_get_fullscreen()
+#define window_frame_get_fullscreen
 /// ():
 return window_get_fullscreen();
 
