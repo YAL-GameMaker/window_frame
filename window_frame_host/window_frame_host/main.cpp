@@ -26,8 +26,8 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			MINMAXINFO* mxi = (MINMAXINFO*)lParam;
 			if (minWidth >= 0) mxi->ptMinTrackSize.x = minWidth;
 			if (minHeight >= 0) mxi->ptMinTrackSize.y = minHeight;
-			if (minWidth >= 0) mxi->ptMinTrackSize.x = minWidth;
-			if (minHeight >= 0) mxi->ptMinTrackSize.y = minHeight;
+			if (maxWidth >= 0) mxi->ptMaxTrackSize.x = maxWidth;
+			if (maxHeight >= 0) mxi->ptMaxTrackSize.y = maxHeight;
 			return 0;
 		};
 		case WM_DESTROY: {
