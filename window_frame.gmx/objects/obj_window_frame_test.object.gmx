@@ -61,6 +61,7 @@ if (window_frame_is_ready &amp;&amp; !was_ready) {
     window_frame_set_min_size(224, 192); // how small the window can be allowed to get
     //window_frame_set_background(background_color); // if you don't fill the entire window
 }
+window_set_caption_visible(0);
 
 // if the close button was clicked (being overriden), close shortly:
 if (window_command_check(window_command_close)) {

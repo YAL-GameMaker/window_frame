@@ -1,6 +1,12 @@
 #define window_frame_init
 /// ()
-//#window_frame_is_ready = global.window_frame_ready
+//#macro window_frame_is_ready   global.window_frame_ready
+//#macro window_command_close    $F060
+//#macro window_command_maximize $F030
+//#macro window_command_minimize $F020
+//#macro window_command_restore  $F120
+//#macro window_command_resize   $F000
+//#macro window_command_move     $F010
 gml_pragma("global", "window_frame_init()");
 global.window_frame_await = 0;
 global.window_frame_ready = false;
@@ -90,13 +96,6 @@ if (argument0) {
 #define window_frame_get_fullscreen
 /// ():
 return window_get_fullscreen();
-
-//#window_command_close = $F060:
-//#window_command_maximize = $F030:
-//#window_command_minimize = $F020:
-//#window_command_restore = $F120:
-//#window_command_resize = $F000:
-//#window_command_move = $F010:
 
 #define window_command_hook
 /// (index): Hooks the specified command 

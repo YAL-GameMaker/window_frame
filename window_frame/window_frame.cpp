@@ -311,6 +311,21 @@ dllx double window_frame_set_max_size(double maxWidth, double maxHeight) {
 	window_frame_host_config(WFI_HOST_CONF_SET_MAX_HEIGHT, (int)maxHeight);
 	return true;
 }
+///
+dllx double window_set_caption_visible(double enable) {
+	auto wl = GetWindowLong(window_frame_host_hwnd, GWL_STYLE);
+	auto wx = GetWindowLong(window_frame_host_hwnd, GWL_EXSTYLE);
+	if (enable > 0.5) {
+		wl |= (WS_CAPTION & ~WS_BORDER);
+		wx &= ~WS_EX_TOOLWINDOW;
+	} else {
+		wl &= ~(WS_CAPTION & ~WS_BORDER);
+		wx |= WS_EX_TOOLWINDOW;
+	}
+	SetWindowLong(window_frame_host_hwnd, GWL_STYLE, wl);
+	SetWindowLong(window_frame_host_hwnd, GWL_EXSTYLE, wx);
+	return true;
+}
 #pragma endregion
 
 

@@ -63,8 +63,8 @@
         <function>
           <name>window_frame_get_width</name>
           <externalName>window_frame_get_width</externalName>
-          <kind>11</kind>
-          <help>window_frame_get_width()</help>
+          <kind>1</kind>
+          <help>window_frame_get_width() : </help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -72,8 +72,8 @@
         <function>
           <name>window_frame_get_height</name>
           <externalName>window_frame_get_height</externalName>
-          <kind>11</kind>
-          <help>window_frame_get_height()</help>
+          <kind>1</kind>
+          <help>window_frame_get_height() : </help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -81,8 +81,8 @@
         <function>
           <name>window_frame_get_x</name>
           <externalName>window_frame_get_x</externalName>
-          <kind>11</kind>
-          <help>window_frame_get_x()</help>
+          <kind>1</kind>
+          <help>window_frame_get_x() : </help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -90,8 +90,8 @@
         <function>
           <name>window_frame_get_y</name>
           <externalName>window_frame_get_y</externalName>
-          <kind>11</kind>
-          <help>window_frame_get_y()</help>
+          <kind>1</kind>
+          <help>window_frame_get_y() : </help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -110,8 +110,8 @@
         <function>
           <name>window_frame_set_rect</name>
           <externalName>window_frame_set_rect</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_rect(x, y, w, h)</help>
+          <kind>1</kind>
+          <help>window_frame_set_rect(x, y, w, h) : </help>
           <returnType>2</returnType>
           <argCount>4</argCount>
           <args>
@@ -124,8 +124,8 @@
         <function>
           <name>window_frame_set_region</name>
           <externalName>window_frame_set_region</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_region(x, y, w, h)</help>
+          <kind>1</kind>
+          <help>window_frame_set_region(x, y, w, h) : </help>
           <returnType>2</returnType>
           <argCount>4</argCount>
           <args>
@@ -138,8 +138,8 @@
         <function>
           <name>window_frame_set_caption</name>
           <externalName>window_frame_set_caption</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_caption(text)</help>
+          <kind>1</kind>
+          <help>window_frame_set_caption(text) : </help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -206,7 +206,7 @@
         <function>
           <name>window_command_check</name>
           <externalName>window_command_check</externalName>
-          <kind>11</kind>
+          <kind>1</kind>
           <help>window_command_check(button) : Returns whether the given button was pressed since the last call to this function.</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
@@ -217,8 +217,8 @@
         <function>
           <name>window_frame_set_background</name>
           <externalName>window_frame_set_background</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_background(color)</help>
+          <kind>1</kind>
+          <help>window_frame_set_background(color) : </help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -228,8 +228,8 @@
         <function>
           <name>window_frame_set_min_size</name>
           <externalName>window_frame_set_min_size</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_min_size(minWidth, minHeight)</help>
+          <kind>1</kind>
+          <help>window_frame_set_min_size(minWidth, minHeight) : </help>
           <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
@@ -240,12 +240,23 @@
         <function>
           <name>window_frame_set_max_size</name>
           <externalName>window_frame_set_max_size</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_max_size(maxWidth, maxHeight)</help>
+          <kind>1</kind>
+          <help>window_frame_set_max_size(maxWidth, maxHeight) : </help>
           <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
             <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_set_caption_visible</name>
+          <externalName>window_set_caption_visible</externalName>
+          <kind>1</kind>
+          <help>window_set_caption_visible(enable) : </help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
             <arg>2</arg>
           </args>
         </function>
@@ -290,8 +301,8 @@
         <function>
           <name>window_frame_init</name>
           <externalName>window_frame_init</externalName>
-          <kind>11</kind>
-          <help></help>
+          <kind>2</kind>
+          <help>window_frame_init()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -299,8 +310,8 @@
         <function>
           <name>window_frame_update</name>
           <externalName>window_frame_update</externalName>
-          <kind>11</kind>
-          <help>window_frame_update() : Should be called once per frame.</help>
+          <kind>2</kind>
+          <help>window_frame_update(): Should be called once per frame.</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -308,8 +319,8 @@
         <function>
           <name>window_frame_get_visible</name>
           <externalName>window_frame_get_visible</externalName>
-          <kind>11</kind>
-          <help>window_frame_get_visible() : Returns whether the frame is currently on.</help>
+          <kind>2</kind>
+          <help>window_frame_get_visible(): Returns whether the frame is currently on.</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -317,8 +328,8 @@
         <function>
           <name>window_frame_set_visible</name>
           <externalName>window_frame_set_visible</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_visible(visible) : Turns the frame on/off.</help>
+          <kind>2</kind>
+          <help>window_frame_set_visible(visible): Turns the frame on/off.</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -328,8 +339,8 @@
         <function>
           <name>window_frame_get_rect</name>
           <externalName>window_frame_get_rect</externalName>
-          <kind>11</kind>
-          <help>window_frame_get_rect() : Returns an array of x, y, width, height</help>
+          <kind>2</kind>
+          <help>window_frame_get_rect(): Returns an array of x, y, width, height</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -337,8 +348,8 @@
         <function>
           <name>window_frame_set_fullscreen</name>
           <externalName>window_frame_set_fullscreen</externalName>
-          <kind>11</kind>
-          <help>window_frame_set_fullscreen(full)</help>
+          <kind>2</kind>
+          <help>window_frame_set_fullscreen(full): </help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -348,8 +359,8 @@
         <function>
           <name>window_frame_get_fullscreen</name>
           <externalName>window_frame_get_fullscreen</externalName>
-          <kind>11</kind>
-          <help>window_frame_get_fullscreen()</help>
+          <kind>2</kind>
+          <help>window_frame_get_fullscreen():</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -357,8 +368,8 @@
         <function>
           <name>window_command_hook</name>
           <externalName>window_command_hook</externalName>
-          <kind>11</kind>
-          <help>window_command_hook(index) : Hooks the specified command </help>
+          <kind>2</kind>
+          <help>window_command_hook(index): Hooks the specified command </help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -368,8 +379,8 @@
         <function>
           <name>window_command_unhook</name>
           <externalName>window_command_unhook</externalName>
-          <kind>11</kind>
-          <help>window_command_unhook(index)</help>
+          <kind>2</kind>
+          <help>window_command_unhook(index):</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -379,8 +390,8 @@
         <function>
           <name>window_command_run</name>
           <externalName>window_command_run</externalName>
-          <kind>11</kind>
-          <help>window_command_run(index, param = 0)</help>
+          <kind>2</kind>
+          <help>window_command_run(index, param = 0):</help>
           <returnType>2</returnType>
           <argCount>-1</argCount>
           <args/>
@@ -388,8 +399,8 @@
         <function>
           <name>window_command_get_active</name>
           <externalName>window_command_get_active</externalName>
-          <kind>11</kind>
-          <help>window_command_get_active(command) : Returns whether the given command is currently available.</help>
+          <kind>2</kind>
+          <help>window_command_get_active(command): Returns whether the given command is currently available.</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -399,8 +410,8 @@
         <function>
           <name>window_command_set_active</name>
           <externalName>window_command_set_active</externalName>
-          <kind>11</kind>
-          <help>window_command_set_active(command, status:bool) : Enables/disables the command. Returns -1 if not possible.</help>
+          <kind>2</kind>
+          <help>window_command_set_active(command, status:bool): Enables/disables the command. Returns -1 if not possible.</help>
           <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
@@ -422,7 +433,7 @@
         <constant>
           <name>window_frame_is_ready</name>
           <value>global.window_frame_ready</value>
-          <hidden>-1</hidden>
+          <hidden>0</hidden>
         </constant>
         <constant>
           <name>window_command_close</name>
