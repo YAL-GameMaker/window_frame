@@ -13,6 +13,10 @@ global.window_frame_ready = false;
 global.window_frame_bound = false;
 global.window_frame_visible = false;
 global.window_frame_buffer = -1;
+global.window_frame_pre_fs_x = window_get_x();
+global.window_frame_pre_fs_y = window_get_y();
+global.window_frame_pre_fs_w = window_get_width();
+global.window_frame_pre_fs_h = window_get_height();
 
 #define window_frame_update
 /// (): Should be called once per frame.
@@ -58,6 +62,8 @@ return global.window_frame_visible;
 /// (visible): Turns the frame on/off.
 var z = argument0;
 global.window_frame_visible = z;
+// we confidently cannot embed fullscreen windows
+// therefore framing is delayed until exiting fs
 if (!window_get_fullscreen()) {
 	window_frame_set_visible_raw(z);
 	global.window_frame_bound = z;
@@ -80,16 +86,23 @@ return r;
 #define window_frame_set_fullscreen
 /// (full): 
 if (argument0) {
+	if (window_get_fullscreen()) exit;
 	if (global.window_frame_bound) {
 		global.window_frame_bound = false;
 		window_frame_set_visible_raw(false);
 	}
+	global.window_frame_pre_fs_x = window_frame_get_x();
+	global.window_frame_pre_fs_y = window_frame_get_y();
+	global.window_frame_pre_fs_w = window_frame_get_width();
+	global.window_frame_pre_fs_h = window_frame_get_height();
 	window_set_fullscreen(true);
 } else {
+	if (!window_get_fullscreen()) exit;
 	window_set_fullscreen(false);
+	//window_set_rectangle(global.window_frame_pre_fs_x, global.window_frame_pre_fs_y, global.window_frame_pre_fs_w, global.window_frame_pre_fs_h);
 	if (global.window_frame_visible) {
 		global.window_frame_bound = true;
-		window_frame_set_visible(true);
+		//window_frame_set_visible(true);
 	}
 }
 

@@ -77,6 +77,7 @@ class StringConv {
 HWND window_frame_host_hwnd = nullptr;
 HANDLE window_frame_host_proc = nullptr;
 HWND window_frame_game_hwnd = nullptr;
+#define window_frame_curr_hwnd (window_frame_bound ? window_frame_host_hwnd : window_frame_game_hwnd)
 bool window_frame_bound = false;
 //
 std::map<WPARAM, bool> window_command_hooks;
@@ -104,7 +105,7 @@ LRESULT window_frame_wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 }
 
 RECT window_frame_get_rect() {
-	HWND hwnd = window_frame_host_hwnd;
+	HWND hwnd = window_frame_curr_hwnd;
 	RECT wr, cr, ar;
 	GetClientRect(hwnd, &cr);
 	ar.left = cr.left; ar.right = cr.right;
@@ -121,13 +122,16 @@ bool window_frame_set_visible_impl(bool show, bool setvis) {
 	if (show == window_frame_bound) return true;
 	HWND hwnd = window_frame_game_hwnd;
 	HWND fwnd = window_frame_host_hwnd;
+	RECT rect = window_frame_get_rect();
+	//trace("%d,%d,%d,%d", rect.left, rect.top, rect.right, rect.bottom);
 	if (show) {
 		SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_POPUP | WS_CHILD);
 		SetParent(hwnd, fwnd);
 		SetWindowPos(hwnd, nullptr, 0, 0, 0, 0, SWP_NOSIZE);
+		AdjustWindowRect(&rect, GetWindowLong(fwnd, GWL_STYLE), false);
+		SetWindowPos(fwnd, nullptr, rect.left, rect.top, 0, 0, SWP_NOSIZE);
 		if (setvis) ShowWindow(fwnd, SW_SHOW);
 	} else {
-		RECT rect = window_frame_get_rect();
 		SetWindowLong(hwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_CHILD | WS_POPUP);
 		SetParent(hwnd, nullptr);
 		SetWindowPos(hwnd, nullptr, rect.left, rect.top, 0, 0, SWP_NOSIZE);
@@ -143,17 +147,18 @@ dllx double window_frame_set_visible_raw(double visible) {
 
 #pragma region Window Rect
 BOOL window_frame_set_rect_impl(int x, int y, int w, int h, bool show) {
+	HWND hwnd = window_frame_curr_hwnd;
 	//
 	RECT rect;
 	rect.left = x; rect.right = x + w;
 	rect.top = y; rect.bottom = y + h;
-	AdjustWindowRect(&rect, GetWindowLong(window_frame_host_hwnd, GWL_STYLE), false);
+	AdjustWindowRect(&rect, GetWindowLong(hwnd, GWL_STYLE), false);
 	x = rect.left; w = rect.right - x;
 	y = rect.top; h = rect.bottom - y;
 	//
 	if (show) {
-		return SetWindowPos(window_frame_host_hwnd, nullptr, x, y, w, h, SWP_SHOWWINDOW);
-	} else return MoveWindow(window_frame_host_hwnd, x, y, w, h, TRUE);
+		return  SetWindowPos(hwnd, nullptr, x, y, w, h, SWP_SHOWWINDOW);
+	} else return MoveWindow(hwnd, x, y, w, h, TRUE);
 }
 
 ///
@@ -376,7 +381,9 @@ dllx double window_frame_init_raw(char* cwnd, char* cbuf) {
 		window_frame_wndproc_base = (WNDPROC)SetWindowLongPtr(hwnd, GWL_WNDPROC,
 			(LONG_PTR)window_frame_wndproc_hook);
 		//
+		window_frame_bound = true;
 		window_frame_set_rect_impl(x, y, w, h, true);
+		window_frame_bound = false;
 		//
 		SetWindowLongPtr(fwnd, GWL_USERDATA, (LONG)hwnd);
 		//

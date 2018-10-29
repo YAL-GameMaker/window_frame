@@ -108,6 +108,7 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 int WINAPI WinMain(
 	HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow
 ) {
+	SetProcessDPIAware();
 	//
 	WNDCLASSEXW wcex;
 	wcex.cbSize = sizeof(WNDCLASSEX);
