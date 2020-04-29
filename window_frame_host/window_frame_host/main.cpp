@@ -55,6 +55,16 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 			}
 			break;
 		};
+		case WM_SETFOCUS: {
+			// allegedly no side effects https://itch.io/post/537218
+			HWND game = (HWND)GetWindowLongPtr(hWnd, GWLP_USERDATA);
+			if (game != nullptr) {
+				if (IsWindow(game)) {
+					SetFocus(game);
+				}
+			}
+			return 0;
+		};
 		case WM_SYSCOMMAND: {
 			if (window_command_direct) break;
 			auto cmd = wParam & ~15;
