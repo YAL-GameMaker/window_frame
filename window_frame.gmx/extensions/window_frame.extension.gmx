@@ -50,6 +50,26 @@
       <ProxyFiles/>
       <functions>
         <function>
+          <name>window_frame_has_focus</name>
+          <externalName>window_frame_has_focus</externalName>
+          <kind>1</kind>
+          <help>window_frame_has_focus()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_get_handle</name>
+          <externalName>window_frame_get_handle</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
           <name>window_frame_set_visible_raw</name>
           <externalName>window_frame_set_visible_raw</externalName>
           <kind>11</kind>
@@ -64,7 +84,7 @@
           <name>window_frame_get_width</name>
           <externalName>window_frame_get_width</externalName>
           <kind>1</kind>
-          <help>window_frame_get_width() : </help>
+          <help>window_frame_get_width()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -73,7 +93,7 @@
           <name>window_frame_get_height</name>
           <externalName>window_frame_get_height</externalName>
           <kind>1</kind>
-          <help>window_frame_get_height() : </help>
+          <help>window_frame_get_height()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -82,7 +102,7 @@
           <name>window_frame_get_x</name>
           <externalName>window_frame_get_x</externalName>
           <kind>1</kind>
-          <help>window_frame_get_x() : </help>
+          <help>window_frame_get_x()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -91,7 +111,7 @@
           <name>window_frame_get_y</name>
           <externalName>window_frame_get_y</externalName>
           <kind>1</kind>
-          <help>window_frame_get_y() : </help>
+          <help>window_frame_get_y()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -111,7 +131,7 @@
           <name>window_frame_set_rect</name>
           <externalName>window_frame_set_rect</externalName>
           <kind>1</kind>
-          <help>window_frame_set_rect(x, y, w, h) : </help>
+          <help>window_frame_set_rect(x, y, w, h)</help>
           <returnType>2</returnType>
           <argCount>4</argCount>
           <args>
@@ -125,7 +145,7 @@
           <name>window_frame_set_region</name>
           <externalName>window_frame_set_region</externalName>
           <kind>1</kind>
-          <help>window_frame_set_region(x, y, w, h) : </help>
+          <help>window_frame_set_region(x, y, w, h)</help>
           <returnType>2</returnType>
           <argCount>4</argCount>
           <args>
@@ -139,7 +159,7 @@
           <name>window_frame_set_caption</name>
           <externalName>window_frame_set_caption</externalName>
           <kind>1</kind>
-          <help>window_frame_set_caption(text) : </help>
+          <help>window_frame_set_caption(text)</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -218,7 +238,7 @@
           <name>window_frame_set_background</name>
           <externalName>window_frame_set_background</externalName>
           <kind>1</kind>
-          <help>window_frame_set_background(color) : </help>
+          <help>window_frame_set_background(color)</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -229,7 +249,7 @@
           <name>window_frame_set_min_size</name>
           <externalName>window_frame_set_min_size</externalName>
           <kind>1</kind>
-          <help>window_frame_set_min_size(minWidth, minHeight) : </help>
+          <help>window_frame_set_min_size(minWidth, minHeight)</help>
           <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
@@ -241,7 +261,7 @@
           <name>window_frame_set_max_size</name>
           <externalName>window_frame_set_max_size</externalName>
           <kind>1</kind>
-          <help>window_frame_set_max_size(maxWidth, maxHeight) : </help>
+          <help>window_frame_set_max_size(maxWidth, maxHeight)</help>
           <returnType>2</returnType>
           <argCount>2</argCount>
           <args>
@@ -253,7 +273,7 @@
           <name>window_set_caption_visible</name>
           <externalName>window_set_caption_visible</externalName>
           <kind>1</kind>
-          <help>window_set_caption_visible(enable) : </help>
+          <help>window_set_caption_visible(enable)</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>

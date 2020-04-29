@@ -84,6 +84,18 @@ std::map<WPARAM, bool> window_command_hooks;
 std::map<WPARAM, bool> window_command_blocks;
 #define window_frame_host_config(type, lParam) SendMessage(window_frame_host_hwnd, WFI_WM_HOST_CONFIG, type, lParam);
 
+bool window_frame_has_focus_v = true;
+
+///
+dllx double window_frame_has_focus() {
+	return window_frame_has_focus_v;
+}
+//
+dllx double window_frame_get_handle(HWND* out) {
+	out[0] = window_frame_curr_hwnd;
+	return true;
+}
+
 BOOL CALLBACK window_frame_enum_wnds(HWND hwnd, LPARAM param) {
 	DWORD thread = GetWindowThreadProcessId(hwnd, nullptr);
 	if (thread == (DWORD)param) {
@@ -95,6 +107,9 @@ BOOL CALLBACK window_frame_enum_wnds(HWND hwnd, LPARAM param) {
 WNDPROC window_frame_wndproc_base = nullptr;
 LRESULT window_frame_wndproc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
 	switch (msg) {
+		case WM_ACTIVATE:
+			window_frame_has_focus_v = (wp & 0xFFFF) != 0;
+			break;
 		case WM_ERASEBKGND:
 			return TRUE;
 		case WFI_WM_CLIENT_NOTIFY_HOOK: // notify hook
