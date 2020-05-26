@@ -37,7 +37,6 @@ if (global.window_frame_await < 2 && ++global.window_frame_await >= 2) {
 		global.window_frame_bound = true;
 		global.window_frame_visible = true;
 	}
-	buffer_delete(b);
 }
 if (global.window_frame_ready) {
 	// unbind when in full-screen mode, bind back when windowed.
