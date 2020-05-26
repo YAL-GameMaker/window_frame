@@ -93,6 +93,17 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>cmd /C echo Copying files...
+xcopy /y "$(TargetPath)" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(TargetFileName)"
+xcopy /y "$(ProjectDir)$(AssemblyName).cpp" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(AssemblyName).cpp"
+
+cmd /C echo Copying documentation...
+xcopy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
+
+cmd /C echo Running gmxgen to update extensions (https://bitbucket.org/yal_cc/gmxgen/)
+gmxgen "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName).extension.gmx"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -125,8 +136,14 @@
       <GenerateDebugInformation>No</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(TargetFileName)"
-copy /y "$(ProjectDir)$(AssemblyName).cpp" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(AssemblyName).cpp"
+      <Command>cmd /C echo Copying files...
+xcopy /y "$(TargetPath)" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(TargetFileName)"
+xcopy /y "$(ProjectDir)$(AssemblyName).cpp" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(AssemblyName).cpp"
+
+cmd /C echo Copying documentation...
+xcopy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
+
+cmd /C echo Running gmxgen to update extensions (https://bitbucket.org/yal_cc/gmxgen/)
 gmxgen "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName).extension.gmx"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>

@@ -33,6 +33,7 @@
     <Resource>Objects\obj_window_frame_test</Resource>
     <Resource>Rooms\rm_window_frame_test</Resource>
     <Resource>Fonts\fnt_window_frame_test</Resource>
+    <Resource>Included Files\window_frame.html</Resource>
   </IncludedResources>
   <files>
     <file>

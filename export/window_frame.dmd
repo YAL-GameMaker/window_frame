@@ -1,0 +1,183 @@
+```set template default.html```
+```set autoapi ext```
+```gmlapi fnames```
+```set title Window Freeze Fix cheat sheet```
+```set mainclass boxtt```
+```setmd intro
+This is a "cheat sheet" for Window Freeze Fix extension by YellowAfterlife.  
+The extension can be downloaded from [itch.io](https://yellowafterlife.itch.io/window-freeze-fix).  
+Source code can be found on [BitBucket](https://bitbucket.org/yal_cc/window_frame/).  
+An up-to-date version of this document can always be found [online](https://yal.cc/r/17/window_frame/). 
+```
+#[Terminology](window_frame_terms) {
+	Here, "the frame" is the helper window that is being displayed around your game.
+}
+#[Size and state]() {
+	#[window_frame_update()]() {
+		Should be called once per frame.
+		
+		Manages startup and sync (e.g. hiding/unhiding the frame as the game enters/exits fullscreen).
+	}
+	---
+	#[window_frame_get_visible()->visible?]() {
+		Returns whether the frame is currently being shown.
+	}
+	#[window_frame_set_visible(visible)]() {
+		Turns the frame on/off.
+	}
+	---
+	#[window_frame_set_fullscreen(enable)]() {
+		Enables or disables fullscreen.
+		
+		You _must_ use this in place of regular `window_set_fullscreen`
+		or you may land yourself or your project's users in an unusual situation
+		involving a fullscreen window that is click-through and cannot be minimized.
+	}
+	#[window_frame_get_fullscreen()]() {
+		Counterpart of above function.
+	}
+	---
+	#[window_frame_has_focus()->focus?]() {
+		Equivalent to built-in `window_has_focus`, but counts the frame too.
+	}
+	---
+	#[window_frame_get_x()->x]() {
+		Returns X of either the frame (if visible) or the game window.
+	}
+	#[window_frame_get_y()->y]() {
+		Returns Y of either the frame (if visible) or the game window.
+	}
+	#[window_frame_get_width()->width]() {
+		Returns width of either the frame (if visible) or the game window.
+	}
+	#[window_frame_get_height()->height]() {
+		Returns height of either the frame (if visible) or the game window.
+	}
+	#[window_frame_get_rect()->\[x, y, w, h\]]() {
+		Returns a 4-element array containing x/y/width/height
+		of either the frame (if visible) or the game window.
+	}
+	#[window_frame_set_rect(x, y, w, h)]() {
+		Equivalent to `window_set_rectangle`.
+		
+		Will move either the frame (if active)
+		or the actual game window.
+	}
+	---
+	#[window_frame_set_min_size(minWidth, minHeight)]() {
+		If the frame is resizable, this function allows to specify minimum user-defined size.
+		
+		For example,
+		```
+		window_frame_set_min_size(224, 192);
+		```
+	}
+	#[window_frame_set_max_size(maxWidth, maxHeight)]() {
+		If the frame is resizable, this function allows to specify maximum user-defined size.
+		
+		For example,
+		```
+		window_frame_set_max_size(1600, 900);
+		```
+	}
+	---
+	#[window_frame_set_region(x, y, w, h)]() {
+		If the frame is active, this moves and/or resizes the game window inside the frame.
+		
+		From the sample project:
+		```
+		// resize the game to fit the container window if it's visible
+		// (if you don't do window resizing, you don't need this)
+		if (window_frame_get_visible()) {
+		    var w = window_frame_get_width();
+		    var h = window_frame_get_height();
+		    if (w > 0 && h > 0 && surface_exists(application_surface)
+		    && (window_get_width() != w || window_get_height() != h)
+		    ) {
+		        // resize room (since we don't use views):
+		        room_width = w; room_height = h;
+		        // resize the game inside the frame-window to fit it's size:
+		        window_frame_set_region(0, 0, w, h);
+		        // also resize application_surface:
+		        surface_resize(application_surface, w, h);
+		    }
+		}
+		```
+	}
+	---
+	#[window_frame_set_background(color)]() {
+		Sets the background color shown on the portions of the frame window not occupied by your game. Can be set to -1 to not draw anything there.
+		```
+		window_frame_set_background(make_color_rgb(136, 158, 197));
+		```
+	}
+	#[window_frame_set_caption(text)]() {
+		Like `window_set_caption`, but for the frame.
+	}
+	#[window_set_caption_visible(enable]() {
+		This function does not seem to work correctly, but you might find yourself
+		amused by Windows' indecisiveness in whether it wants to draw the
+		window caption or not.
+	}
+}
+#[Window Commands block](window_command) {
+	The following mirror [my other extension](https://yellowafterlife.itch.io/gamemaker-window-commands):
+	
+	Supported command constants:
+	#[window_command_close](){}
+	#[window_command_maximize](){}
+	#[window_command_minimize](){}
+	#[window_command_restore](){
+		The button for un-maximizing the window.
+		
+		Disabling this can be generally considered somewhat evil.
+	}
+	#[window_command_resize](){
+		If disabled, the window cannot be resized.
+	}
+	#[window_command_move](){
+		If disabled, the window cannot be dragged around.
+	}
+	
+	Enabling/disabling:
+	#[window_command_set_active(command, enable)]() {
+		Enables or disables a command.\
+		For example, for buttons this grays out the button.
+		
+		Returns the new value or -1 if the command cannot be manipulated.
+		
+		So
+		```
+		window_command_set_active(window_command_minimize, 0);
+		```
+		would disable the ability to minimize the window
+	}
+	#[window_command_get_active(command)->enabled?]() {
+		Returns whether a command is currently enabled, or -1 if unknown.
+	}
+	
+	Hooks:
+	#[window_command_hook(command)]() {
+		Hooks the specified command, intercepting the action and allowing you to check
+		for it using [window_command_check]. Only button-commands can be hooked.
+	}
+	#[window_command_unhook(command)]() {
+		Un-hooks the specified command, allowing it to be performed as usual.
+	}
+	#[window_command_check(command)->was pressed?]() {
+		Returns whether the given command's button was pressed since the last call to this function.
+	}
+	#[window_command_run(index, param = 0)]() {
+		Runs the specified command, regardless of whether it is currently hooked.
+		
+		This essentially invokes [WM_SYSCOMMAND](https://docs.microsoft.com/en-us/windows/win32/menurc/wm-syscommand) on the frame.
+		
+		`param`, if specified, is a raw `lParam` value, while `index` is `wParam`.
+		
+		So
+		```
+		window_command_run(window_command_minimize);
+		```
+		would minimize the window when invoked.
+	}
+}

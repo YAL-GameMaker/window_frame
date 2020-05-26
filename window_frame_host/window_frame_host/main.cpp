@@ -45,8 +45,9 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		};
 		case WM_KEYDOWN: case WM_KEYUP: case WM_SETCURSOR: case WM_MOUSEMOVE:
 		case WM_HOTKEY: case WM_CHAR: case WM_MENUCHAR: case WM_INITMENUPOPUP:
-		case WM_SYSCHAR: case WM_SYSDEADCHAR: case WM_SYSKEYDOWN: case WM_SYSKEYUP: {
-			// forward keyboard events to game window:
+		case WM_SYSCHAR: case WM_SYSDEADCHAR: case WM_SYSKEYDOWN: case WM_SYSKEYUP:
+		case WM_DEVICECHANGE: {
+			// forward device events to the game window:
 			HWND game = (HWND)GetWindowLongPtr(hWnd, GWL_USERDATA);
 			if (game != nullptr) {
 				if (IsWindow(game)) {
@@ -68,6 +69,7 @@ LRESULT CALLBACK wndproc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
 		case WM_SYSCOMMAND: {
 			if (window_command_direct) break;
 			auto cmd = wParam & ~15;
+			if (wParam == SC_KEYMENU) return TRUE; // the MDI system menu is pretty cursed
 			if (window_command_blocks.find(cmd) != window_command_blocks.end()) return TRUE;
 			auto q = window_command_hooks.find(cmd);
 			if (q != window_command_hooks.end()) {
