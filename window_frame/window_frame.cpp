@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include <Windows.h>
 #include <stdio.h>
+#include <string>
 #include <map>
 #include "window_frame_interop.h"
 
@@ -94,6 +95,12 @@ dllx double window_frame_has_focus() {
 dllx double window_frame_get_handle(HWND* out) {
 	out[0] = window_frame_curr_hwnd;
 	return true;
+}
+
+dllx char* window_frame_get_wid() {
+	static std::string llu;
+	llu = std::to_string((int64_t)window_frame_host_hwnd);
+	return (char*)llu.c_str();
 }
 
 BOOL CALLBACK window_frame_enum_wnds(HWND hwnd, LPARAM param) {
