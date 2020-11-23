@@ -56,7 +56,7 @@ class StringConv {
 	LPCWSTR proc(char* src, int cp = CP_UTF8) {
 		size_t size = MultiByteToWideChar(cp, 0, src, -1, NULL, 0);
 		LPCWSTR buf = wget(size);
-		MultiByteToWideChar(cp, 0, src, -1, wbuf, size);
+		MultiByteToWideChar(cp, 0, src, -1, wbuf, (int)size);
 		return wbuf;
 	}
 	char* get(size_t size) {
@@ -70,7 +70,7 @@ class StringConv {
 	char* proc(LPCWSTR src, int cp = CP_UTF8) {
 		size_t size = WideCharToMultiByte(cp, 0, src, -1, NULL, 0, NULL, NULL);
 		char* buf = get(size);
-		WideCharToMultiByte(cp, 0, src, -1, buf, size, NULL, NULL);
+		WideCharToMultiByte(cp, 0, src, -1, buf, (int)size, NULL, NULL);
 		return buf;
 	}
 } utf8;
@@ -234,7 +234,7 @@ dllx double window_frame_set_caption(char* text) {
 
 #pragma region Window Commands
 dllx double window_command_run_raw(double wp, double lp) {
-	return SendMessage(window_frame_host_hwnd, WFI_WM_HOST_EXEC_SYSCOMMAND, (WPARAM)wp, (LPARAM)lp);
+	return (double)SendMessage(window_frame_host_hwnd, WFI_WM_HOST_EXEC_SYSCOMMAND, (WPARAM)wp, (LPARAM)lp);
 }
 dllx double window_command_hook_raw(double button) {
 	auto wb = (WPARAM)button;
@@ -286,8 +286,8 @@ int window_command_acc_active(double cmd, double _val) {
 		}; break;
 		case SC_CLOSE: {
 			auto menu = GetSystemMenu(hwnd, false);
-			if (get) return (GetMenuState(menu, wcmd, MF_BYCOMMAND) & MF_GRAYED) == 0;
-			if (EnableMenuItem(menu, wcmd, MF_BYCOMMAND | (set ? MF_ENABLED : MF_GRAYED)) < 0) return -1;
+			if (get) return (GetMenuState(menu, (UINT)wcmd, MF_BYCOMMAND) & MF_GRAYED) == 0;
+			if (EnableMenuItem(menu, (UINT)wcmd, MF_BYCOMMAND | (set ? MF_ENABLED : MF_GRAYED)) < 0) return -1;
 			return 1;
 		}; break;
 		default: {
@@ -400,14 +400,14 @@ dllx double window_frame_init_raw(char* cwnd, char* cbuf) {
 		SendMessage(fwnd, WM_SETICON, ICON_SMALL, SendMessage(hwnd, WM_GETICON, ICON_SMALL, 0));
 		SendMessage(fwnd, WM_SETICON, ICON_BIG, SendMessage(hwnd, WM_GETICON, ICON_BIG, 0));
 		// hook the game's wndproc so that it doesn't self-clear during resize:
-		window_frame_wndproc_base = (WNDPROC)SetWindowLongPtr(hwnd, GWL_WNDPROC,
+		window_frame_wndproc_base = (WNDPROC)SetWindowLongPtr(hwnd, GWLP_WNDPROC,
 			(LONG_PTR)window_frame_wndproc_hook);
 		//
 		window_frame_bound = true;
 		window_frame_set_rect_impl(x, y, w, h, true);
 		window_frame_bound = false;
 		//
-		SetWindowLongPtr(fwnd, GWL_USERDATA, (LONG)hwnd);
+		SetWindowLongPtr(fwnd, GWLP_USERDATA, (LONG_PTR)hwnd);
 		//
 		window_frame_set_visible_impl(true, false);
 		//
