@@ -179,12 +179,14 @@ BOOL window_frame_set_rect_impl(int x, int y, int w, int h, bool show) {
 ///
 dllx double window_frame_get_width() {
 	RECT rect = window_frame_get_rect();
-	return rect.right - rect.left;
+	auto w = rect.right - rect.left;
+	return w;
 }
 ///
 dllx double window_frame_get_height() {
 	RECT rect = window_frame_get_rect();
-	return rect.bottom - rect.top;
+	auto h = rect.bottom - rect.top;
+	return h;
 }
 ///
 dllx double window_frame_get_x() {
@@ -404,8 +406,8 @@ dllx double window_frame_init_raw(char* cwnd, char* cbuf) {
 		//
 		window_frame_set_visible_impl(true, false);
 		//
-		return 1;
-	} else return 0;
+		return true;
+	} else return false;
 }
 
 dllx double window_frame_cleanup_raw() {
