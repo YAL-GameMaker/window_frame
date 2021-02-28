@@ -71,6 +71,15 @@
           </args>
         </function>
         <function>
+          <name>window_frame_get_wid</name>
+          <externalName>window_frame_get_wid</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>1</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
           <name>window_frame_set_visible_raw</name>
           <externalName>window_frame_set_visible_raw</externalName>
           <kind>11</kind>
@@ -139,6 +148,26 @@
             <arg>2</arg>
             <arg>2</arg>
             <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_get_fakefullscreen</name>
+          <externalName>window_frame_get_fakefullscreen</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_set_fakefullscreen</name>
+          <externalName>window_frame_set_fakefullscreen</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
             <arg>2</arg>
           </args>
         </function>
