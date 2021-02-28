@@ -236,6 +236,26 @@
           </args>
         </function>
         <function>
+          <name>window_get_topmost</name>
+          <externalName>window_get_topmost</externalName>
+          <kind>1</kind>
+          <help>window_get_topmost()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_set_topmost</name>
+          <externalName>window_set_topmost</externalName>
+          <kind>1</kind>
+          <help>window_set_topmost(stayontop)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
           <name>window_frame_set_background</name>
           <externalName>window_frame_set_background</externalName>
           <kind>1</kind>

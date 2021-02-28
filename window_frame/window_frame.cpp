@@ -8,6 +8,9 @@
 
 #define dllx extern "C" __declspec(dllexport)
 #define trace(...) { printf(__VA_ARGS__); printf("\n"); fflush(stdout); }
+inline bool d2b(double val) {
+	return val > 0.5;
+}
 
 struct buffer {
 	char* pos;
@@ -312,6 +315,18 @@ dllx double window_command_check(double button) {
 			return 1;
 		} else return 0;
 	} else return 0;
+}
+#pragma endregion
+
+#pragma region Commands misc.
+///
+dllx double window_get_topmost() {
+	return (GetWindowLong(window_frame_curr_hwnd, GWL_EXSTYLE) & WS_EX_TOPMOST) != 0;
+}
+///
+dllx double window_set_topmost(double stayontop) {
+	SetWindowPos(window_frame_curr_hwnd, d2b(stayontop) ? HWND_TOPMOST : HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+	return 1;
 }
 #pragma endregion
 
