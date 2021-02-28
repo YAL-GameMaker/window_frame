@@ -384,6 +384,8 @@ dllx double window_frame_init_raw(char* cwnd, char* cbuf) {
 		WaitForInputIdle(pinfo.hProcess, INFINITE);
 		// find the hwnd of window_frame_host:
 		EnumWindows(&window_frame_enum_wnds, pinfo.dwThreadId);
+		CloseHandle(pinfo.hThread);
+		CloseHandle(pinfo.hProcess);
 	}
 	//
 	HWND fwnd = window_frame_host_hwnd;
