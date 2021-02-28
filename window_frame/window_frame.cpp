@@ -3,6 +3,7 @@
 #include "stdafx.h"
 #include <Windows.h>
 #include <stdio.h>
+#include <string>
 #include <map>
 #include "window_frame_interop.h"
 
@@ -58,7 +59,7 @@ class StringConv {
 	LPCWSTR proc(char* src, int cp = CP_UTF8) {
 		size_t size = MultiByteToWideChar(cp, 0, src, -1, NULL, 0);
 		LPCWSTR buf = wget(size);
-		MultiByteToWideChar(cp, 0, src, -1, wbuf, size);
+		MultiByteToWideChar(cp, 0, src, -1, wbuf, (int)size);
 		return wbuf;
 	}
 	char* get(size_t size) {
@@ -72,7 +73,7 @@ class StringConv {
 	char* proc(LPCWSTR src, int cp = CP_UTF8) {
 		size_t size = WideCharToMultiByte(cp, 0, src, -1, NULL, 0, NULL, NULL);
 		char* buf = get(size);
-		WideCharToMultiByte(cp, 0, src, -1, buf, size, NULL, NULL);
+		WideCharToMultiByte(cp, 0, src, -1, buf, (int)size, NULL, NULL);
 		return buf;
 	}
 } utf8;
@@ -97,6 +98,12 @@ dllx double window_frame_has_focus() {
 dllx double window_frame_get_handle(HWND* out) {
 	out[0] = window_frame_curr_hwnd;
 	return true;
+}
+
+dllx char* window_frame_get_wid() {
+	static std::string llu;
+	llu = std::to_string((int64_t)window_frame_host_hwnd);
+	return (char*)llu.c_str();
 }
 
 BOOL CALLBACK window_frame_enum_wnds(HWND hwnd, LPARAM param) {
@@ -216,6 +223,49 @@ dllx double window_frame_set_rect(double x, double y, double w, double h) {
 }
 #pragma endregion
 
+#pragma region Fake Fullscreen
+bool window_frame_fakefullscreen = false;
+dllx double window_frame_get_fakefullscreen() {
+	return window_frame_fakefullscreen;
+}
+
+RECT rectprev; RECT clientprev; LONG styleprev;
+bool window_frame_set_fakefullscreen_impl(bool full) {
+	if (full == window_frame_fakefullscreen) return true;
+	HWND hwnd = window_frame_game_hwnd;
+	HWND fwnd = window_frame_host_hwnd;
+	RECT rect = window_frame_get_rect();
+	//trace("%d,%d,%d,%d", rect.left, rect.top, rect.right, rect.bottom);
+	if (full) {
+		rectprev = rect;
+		GetClientRect(hwnd, &clientprev);
+		styleprev = GetWindowLong(fwnd, GWL_STYLE);
+		SetWindowLong(fwnd, GWL_STYLE, GetWindowLong(hwnd, GWL_STYLE) & ~WS_CHILD);
+		MoveWindow(fwnd, 0, 0,
+			GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), true);
+		MoveWindow(hwnd, 0, 0,
+			GetSystemMetrics(SM_CXSCREEN), GetSystemMetrics(SM_CYSCREEN), true);
+	}
+	else {
+		SetWindowLong(fwnd, GWL_STYLE, styleprev & ~WS_CHILD);
+		SetWindowPos(fwnd, nullptr, 0, 0, 0, 0, SWP_NOSIZE);
+		AdjustWindowRect(&rectprev, GetWindowLong(fwnd, GWL_STYLE), false);
+		MoveWindow(fwnd, rectprev.left, rectprev.top, 
+			rectprev.right - rectprev.left, rectprev.bottom - rectprev.top, true);
+		SetWindowPos(hwnd, nullptr, 
+			(GetSystemMetrics(SM_CXSCREEN) / 2) - (clientprev.right / 2),
+			(GetSystemMetrics(SM_CYSCREEN) / 2) - (clientprev.bottom / 2),
+			clientprev.right, clientprev.bottom, 0);
+	}
+	SetFocus(hwnd);
+	window_frame_fakefullscreen = full;
+	return true;
+}
+dllx double window_frame_set_fakefullscreen(double full) {
+	return window_frame_set_fakefullscreen_impl(full > 0.5);
+}
+#pragma endregion
+
 #pragma region Window Caption
 ///
 dllx double window_frame_set_region(double x, double y, double w, double h) {
@@ -232,7 +282,7 @@ dllx double window_frame_set_caption(char* text) {
 
 #pragma region Window Commands
 dllx double window_command_run_raw(double wp, double lp) {
-	return SendMessage(window_frame_host_hwnd, WFI_WM_HOST_EXEC_SYSCOMMAND, (WPARAM)wp, (LPARAM)lp);
+	return (double)SendMessage(window_frame_host_hwnd, WFI_WM_HOST_EXEC_SYSCOMMAND, (WPARAM)wp, (LPARAM)lp);
 }
 dllx double window_command_hook_raw(double button) {
 	auto wb = (WPARAM)button;
@@ -284,8 +334,8 @@ int window_command_acc_active(double cmd, double _val) {
 		}; break;
 		case SC_CLOSE: {
 			auto menu = GetSystemMenu(hwnd, false);
-			if (get) return (GetMenuState(menu, wcmd, MF_BYCOMMAND) & MF_GRAYED) == 0;
-			if (EnableMenuItem(menu, wcmd, MF_BYCOMMAND | (set ? MF_ENABLED : MF_GRAYED)) < 0) return -1;
+			if (get) return (GetMenuState(menu, (UINT)wcmd, MF_BYCOMMAND) & MF_GRAYED) == 0;
+			if (EnableMenuItem(menu, (UINT)wcmd, MF_BYCOMMAND | (set ? MF_ENABLED : MF_GRAYED)) < 0) return -1;
 			return 1;
 		}; break;
 		default: {
@@ -412,14 +462,14 @@ dllx double window_frame_init_raw(char* cwnd, char* cbuf) {
 		SendMessage(fwnd, WM_SETICON, ICON_SMALL, SendMessage(hwnd, WM_GETICON, ICON_SMALL, 0));
 		SendMessage(fwnd, WM_SETICON, ICON_BIG, SendMessage(hwnd, WM_GETICON, ICON_BIG, 0));
 		// hook the game's wndproc so that it doesn't self-clear during resize:
-		window_frame_wndproc_base = (WNDPROC)SetWindowLongPtr(hwnd, GWL_WNDPROC,
+		window_frame_wndproc_base = (WNDPROC)SetWindowLongPtr(hwnd, GWLP_WNDPROC,
 			(LONG_PTR)window_frame_wndproc_hook);
 		//
 		window_frame_bound = true;
 		window_frame_set_rect_impl(x, y, w, h, true);
 		window_frame_bound = false;
 		//
-		SetWindowLongPtr(fwnd, GWL_USERDATA, (LONG)hwnd);
+		SetWindowLongPtr(fwnd, GWLP_USERDATA, (LONG_PTR)hwnd);
 		//
 		window_frame_set_visible_impl(true, false);
 		//
