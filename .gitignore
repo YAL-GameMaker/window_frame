@@ -1,6 +1,10 @@
 .vs/
+
+*/Debug/
+Debug/
 */Release/
 Release/
+
 /window_frame.VC.VC.opendb
 /window_frame_host/window_frame_host.VC.VC.opendb
 /window_frame_host/window_frame_host.VC.db
@@ -10,11 +14,14 @@ Release/
 /window_frame/window_frame.APS
 
 *.gmx/Configs/*/*
-*.gmx/extensions/*/*.cpp
-*.gmx/#backups/*
-*.gmx/datafiles/window_frame.html
+*/options/*/*
+*/extensions/*/*.cpp
+*/#backups/*
+*/datafiles/window_frame.html
 
 export/*.gmez
+export/*.yymp
+export/*.yymps
 export/*.png
 export/*.gmz
 

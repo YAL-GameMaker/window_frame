@@ -93,6 +93,11 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)..\window_frame.gmx\extensions\window_frame\$(TargetFileName)"
+copy /y "$(TargetPath)" "$(SolutionDir)..\window_frame_22\extensions\window_frame\$(TargetFileName)"
+copy /y "$(TargetPath)" "$(SolutionDir)..\window_frame_23\extensions\window_frame\$(TargetFileName)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -125,7 +130,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(SolutionDir)..\window_frame.gmx\extensions\window_frame\$(TargetFileName)"</Command>
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)..\window_frame.gmx\extensions\window_frame\$(TargetFileName)"
+copy /y "$(TargetPath)" "$(SolutionDir)..\window_frame_22\extensions\window_frame\$(TargetFileName)"
+copy /y "$(TargetPath)" "$(SolutionDir)..\window_frame_23\extensions\window_frame\$(TargetFileName)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

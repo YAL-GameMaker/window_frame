@@ -88,21 +88,19 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;window_frame_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>cmd /C echo Copying files...
-xcopy /y "$(TargetPath)" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(TargetFileName)"
-xcopy /y "$(ProjectDir)$(AssemblyName).cpp" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(AssemblyName).cpp"
+      <Command>cmd /C echo Copying documentation...
+copy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
 
-cmd /C echo Copying documentation...
-xcopy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
-
-cmd /C echo Running gmxgen to update extensions (https://bitbucket.org/yal_cc/gmxgen/)
-gmxgen "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName).extension.gmx"</Command>
+cmd /C echo Running gmxgen to update extensions...
+cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -112,11 +110,20 @@ gmxgen "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName).extension.g
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;window_frame_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>cmd /C echo Copying documentation...
+copy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
+
+cmd /C echo Running gmxgen to update extensions...
+cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -139,10 +146,9 @@ gmxgen "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName).extension.g
       <Command>cmd /C echo Copying documentation...
 copy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
 
-cmd /C echo Running gmxgen to update extensions (https://bitbucket.org/yal_cc/gmxgen/)
-cmd /C runGmxGen.bat "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName).extension.gmx" $(
-)"$(TargetPath)" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(TargetFileName)" $(
-)"$(ProjectDir)$(AssemblyName).cpp" "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyName)\$(AssemblyName).cpp"</Command>
+cmd /C echo Running gmxgen to update extensions...
+cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)"
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -154,6 +160,7 @@ cmd /C runGmxGen.bat "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyNam
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;window_frame_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -161,6 +168,14 @@ cmd /C runGmxGen.bat "$(SolutionDir)$(AssemblyName).gmx\extensions\$(AssemblyNam
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>cmd /C echo Copying documentation...
+copy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
+
+cmd /C echo Running gmxgen to update extensions...
+cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)"
+</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />

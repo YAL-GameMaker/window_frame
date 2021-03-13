@@ -149,6 +149,7 @@ if (leaving &gt; 0) {
     + "#2: Disable border"
     + "#3: Toggle fulscreen"
     + "#4: Minimize"
+    + "#T: Toggle stay-on-top"
     + "#Size: " + string(window_get_width()) + "x" + string(window_get_height());
 draw_text(0, 0, s);
 if (keyboard_check_pressed(ord("1"))) window_frame_set_visible(true);
