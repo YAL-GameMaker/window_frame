@@ -4,6 +4,9 @@
 Debug/
 */Release/
 Release/
+*/x64/
+x64/
+
 
 /window_frame.VC.VC.opendb
 /window_frame_host/window_frame_host.VC.VC.opendb
@@ -19,11 +22,13 @@ Release/
 */#backups/*
 */datafiles/window_frame.html
 
+export/*.gmz
 export/*.gmez
+export/*.yyz
 export/*.yymp
 export/*.yymps
 export/*.png
-export/*.gmz
+export/*.zip
 
 *.sdf
 help.rtf

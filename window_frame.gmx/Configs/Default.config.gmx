@@ -211,7 +211,7 @@
     <option_changeresolution>false</option_changeresolution>
     <option_closeesc>true</option_closeesc>
     <option_colordepth>0</option_colordepth>
-    <option_display_name>GameMaker: Studio</option_display_name>
+    <option_display_name>window_frame by YellowAfterlife</option_display_name>
     <option_displayerrors>True</option_displayerrors>
     <option_ecma>0</option_ecma>
     <option_facebook_app_display_name></option_facebook_app_display_name>
@@ -222,8 +222,8 @@
     <option_frequency>0</option_frequency>
     <option_frontimage>nil</option_frontimage>
     <option_fullscreen>False</option_fullscreen>
-    <option_gameguid>{995683FF-03B4-4B37-9755-967B8F52105C}</option_gameguid>
-    <option_gameid>234070554</option_gameid>
+    <option_gameguid>{6BEA397A-78FF-418A-B312-927A750F1EFD}</option_gameguid>
+    <option_gameid>855788849</option_gameid>
     <option_hasloadimage>false</option_hasloadimage>
     <option_helpkey>true</option_helpkey>
     <option_html5_CreationEventOrder>true</option_html5_CreationEventOrder>
@@ -233,7 +233,7 @@
     <option_html5_advertising_type>Supersonic Ads</option_html5_advertising_type>
     <option_html5_allow_fullscreen>True</option_html5_allow_fullscreen>
     <option_html5_alwaysreload>False</option_html5_alwaysreload>
-    <option_html5_browser_title>Created with GameMaker: Studio</option_html5_browser_title>
+    <option_html5_browser_title>window_frame by YellowAfterlife</option_html5_browser_title>
     <option_html5_centergame>False</option_html5_centergame>
     <option_html5_facebook_app_display_name></option_html5_facebook_app_display_name>
     <option_html5_facebook_appid></option_html5_facebook_appid>
@@ -289,24 +289,6 @@
     <option_ios_icon_57>Configs\Default\ios\icons\icon57.png</option_ios_icon_57>
     <option_ios_icon_72>Configs\Default\ios\icons\icon72.png</option_ios_icon_72>
     <option_ios_icon_76>Configs\Default\ios\icons\icon76.png</option_ios_icon_76>
-    <option_ios_icon_ipad_app_152>Configs\Default\ios\icons\app\ipad_152.png</option_ios_icon_ipad_app_152>
-    <option_ios_icon_ipad_app_76>Configs\Default\ios\icons\app\ipad_76.png</option_ios_icon_ipad_app_76>
-    <option_ios_icon_ipad_notification_20>Configs\Default\ios\icons\notification\ipad_20.png</option_ios_icon_ipad_notification_20>
-    <option_ios_icon_ipad_notification_40>Configs\Default\ios\icons\notification\ipad_40.png</option_ios_icon_ipad_notification_40>
-    <option_ios_icon_ipad_pro_app_167>Configs\Default\ios\icons\app\ipad_pro_167.png</option_ios_icon_ipad_pro_app_167>
-    <option_ios_icon_ipad_settings_29>Configs\Default\ios\icons\settings\ipad_29.png</option_ios_icon_ipad_settings_29>
-    <option_ios_icon_ipad_settings_58>Configs\Default\ios\icons\settings\ipad_58.png</option_ios_icon_ipad_settings_58>
-    <option_ios_icon_ipad_spotlight_40>Configs\Default\ios\icons\spotlight\ipad_40.png</option_ios_icon_ipad_spotlight_40>
-    <option_ios_icon_ipad_spotlight_80>Configs\Default\ios\icons\spotlight\ipad_80.png</option_ios_icon_ipad_spotlight_80>
-    <option_ios_icon_iphone_app_120>Configs\Default\ios\icons\app\iphone_120.png</option_ios_icon_iphone_app_120>
-    <option_ios_icon_iphone_app_180>Configs\Default\ios\icons\app\iphone_180.png</option_ios_icon_iphone_app_180>
-    <option_ios_icon_iphone_notification_40>Configs\Default\ios\icons\notification\iphone_40.png</option_ios_icon_iphone_notification_40>
-    <option_ios_icon_iphone_notification_60>Configs\Default\ios\icons\notification\iphone_60.png</option_ios_icon_iphone_notification_60>
-    <option_ios_icon_iphone_settings_58>Configs\Default\ios\icons\settings\iphone_58.png</option_ios_icon_iphone_settings_58>
-    <option_ios_icon_iphone_settings_87>Configs\Default\ios\icons\settings\iphone_87.png</option_ios_icon_iphone_settings_87>
-    <option_ios_icon_iphone_spotlight_120>Configs\Default\ios\icons\spotlight\iphone_120.png</option_ios_icon_iphone_spotlight_120>
-    <option_ios_icon_iphone_spotlight_80>Configs\Default\ios\icons\spotlight\iphone_80.png</option_ios_icon_iphone_spotlight_80>
-    <option_ios_icon_itunes_artwork_1024>Configs\Default\ios\icons\itunes\itunes_1024.png</option_ios_icon_itunes_artwork_1024>
     <option_ios_interpolate>-1</option_ios_interpolate>
     <option_ios_ipad_retina_splash_png>Configs\Default\ios\iPadRetinasplash.png</option_ios_ipad_retina_splash_png>
     <option_ios_ipad_retina_splash_portrait_png>Configs\Default\ios\iPadRetinasplashPortrait.png</option_ios_ipad_retina_splash_portrait_png>
@@ -318,22 +300,10 @@
     <option_ios_iphone6_splash_portrait_png>Configs\Default\ios\iPhone6splashPortrait.png</option_ios_iphone6_splash_portrait_png>
     <option_ios_iphone6plus_splash_png>Configs\Default\ios\iPhone6Plussplash.png</option_ios_iphone6plus_splash_png>
     <option_ios_iphone6plus_splash_portrait_png>Configs\Default\ios\iPhone6PlussplashPortrait.png</option_ios_iphone6plus_splash_portrait_png>
-    <option_ios_iphone7_splash_png>Configs\Default\ios\iPhone7splash.png</option_ios_iphone7_splash_png>
-    <option_ios_iphone7_splash_portrait_png>Configs\Default\ios\iPhone7splashPortrait.png</option_ios_iphone7_splash_portrait_png>
-    <option_ios_iphone7plus_splash_png>Configs\Default\ios\iPhone7Plussplash.png</option_ios_iphone7plus_splash_png>
-    <option_ios_iphone7plus_splash_portrait_png>Configs\Default\ios\iPhone7PlussplashPortrait.png</option_ios_iphone7plus_splash_portrait_png>
-    <option_ios_iphone8_splash_png>Configs\Default\ios\iPhone8splash.png</option_ios_iphone8_splash_png>
-    <option_ios_iphone8_splash_portrait_png>Configs\Default\ios\iPhone8splashPortrait.png</option_ios_iphone8_splash_portrait_png>
-    <option_ios_iphone8plus_splash_png>Configs\Default\ios\iPhone8Plussplash.png</option_ios_iphone8plus_splash_png>
-    <option_ios_iphone8plus_splash_portrait_png>Configs\Default\ios\iPhone8PlussplashPortrait.png</option_ios_iphone8plus_splash_portrait_png>
     <option_ios_iphone_retina_splash_png>Configs\Default\ios\IphoneRetinasplash.png</option_ios_iphone_retina_splash_png>
     <option_ios_iphone_retina_splash_portrait_png>Configs\Default\ios\IphoneRetinasplashPortrait.png</option_ios_iphone_retina_splash_portrait_png>
     <option_ios_iphone_splash_png>Configs\Default\ios\iPhonesplash.png</option_ios_iphone_splash_png>
     <option_ios_iphone_splash_portrait_png>Configs\Default\ios\iPhonesplashPortrait.png</option_ios_iphone_splash_portrait_png>
-    <option_ios_iphonese_splash_png>Configs\Default\ios\iPhonesesplash.png</option_ios_iphonese_splash_png>
-    <option_ios_iphonese_splash_portrait_png>Configs\Default\ios\iPhonesesplashPortrait.png</option_ios_iphonese_splash_portrait_png>
-    <option_ios_iphonex_splash_png>Configs\Default\ios\iPhonexsplash.png</option_ios_iphonex_splash_png>
-    <option_ios_iphonex_splash_portrait_png>Configs\Default\ios\iPhonexsplashPortrait.png</option_ios_iphonex_splash_portrait_png>
     <option_ios_major_version>1</option_ios_major_version>
     <option_ios_minor_version>0</option_ios_minor_version>
     <option_ios_orient_landscape>-1</option_ios_orient_landscape>
@@ -406,24 +376,24 @@
     <option_priority>0</option_priority>
     <option_ps3_interpolate>-1</option_ps3_interpolate>
     <option_ps3_nptitleid></option_ps3_nptitleid>
-    <option_ps3_nptitlepassphrase>Memo1</option_ps3_nptitlepassphrase>
-    <option_ps3_nptitlesecret>Memo1</option_ps3_nptitlesecret>
-    <option_ps3_package_id></option_ps3_package_id>
-    <option_ps3_passcode></option_ps3_passcode>
-    <option_ps3_scale>0</option_ps3_scale>
+    <option_ps3_nptitlepassphrase></option_ps3_nptitlepassphrase>
+    <option_ps3_nptitlesecret></option_ps3_nptitlesecret>
+    <option_ps3_package_id>IV0002-NPXS00020_00-GAMEMAKERGAME001</option_ps3_package_id>
+    <option_ps3_passcode>0xc0a3b3641c2ad1ef23153a48a3e12fe7</option_ps3_passcode>
+    <option_ps3_scale>-1</option_ps3_scale>
     <option_ps3_texture_page>2048</option_ps3_texture_page>
-    <option_ps3_version>1.00</option_ps3_version>
+    <option_ps3_version>01.00</option_ps3_version>
     <option_ps4_build_version>0</option_ps4_build_version>
     <option_ps4_displaycursor>0</option_ps4_displaycursor>
     <option_ps4_interpolate>-1</option_ps4_interpolate>
     <option_ps4_major_version>1</option_ps4_major_version>
     <option_ps4_minor_version>0</option_ps4_minor_version>
     <option_ps4_nptitleid></option_ps4_nptitleid>
-    <option_ps4_nptitlesecret>Memo1</option_ps4_nptitlesecret>
-    <option_ps4_package_id></option_ps4_package_id>
-    <option_ps4_passcode></option_ps4_passcode>
+    <option_ps4_nptitlesecret></option_ps4_nptitlesecret>
+    <option_ps4_package_id>IV0002-NPXS29129_00-APP0990000000022</option_ps4_package_id>
+    <option_ps4_passcode>GvE6xCpZxd96scOUGuLPbuLp8O800B0s</option_ps4_passcode>
     <option_ps4_revision_version>0</option_ps4_revision_version>
-    <option_ps4_scale>0</option_ps4_scale>
+    <option_ps4_scale>-1</option_ps4_scale>
     <option_ps4_texture_page>2048</option_ps4_texture_page>
     <option_psvita_build_version>0</option_psvita_build_version>
     <option_psvita_fronttouch>0</option_psvita_fronttouch>
@@ -431,22 +401,22 @@
     <option_psvita_major_version>1</option_psvita_major_version>
     <option_psvita_minor_version>0</option_psvita_minor_version>
     <option_psvita_nptitleid></option_psvita_nptitleid>
-    <option_psvita_nptitlepassphrase>Memo1</option_psvita_nptitlepassphrase>
-    <option_psvita_nptitlesecret>Memo1</option_psvita_nptitlesecret>
-    <option_psvita_package_id></option_psvita_package_id>
-    <option_psvita_passcode></option_psvita_passcode>
+    <option_psvita_nptitlepassphrase></option_psvita_nptitlepassphrase>
+    <option_psvita_nptitlesecret></option_psvita_nptitlesecret>
+    <option_psvita_package_id>EP9000-NPXB01693_00-GMSTUDIORUNNER00</option_psvita_package_id>
+    <option_psvita_passcode>5MHZUpPpbQLKAkttvpJzA6EaWgsiWv1w</option_psvita_passcode>
     <option_psvita_reartouch>0</option_psvita_reartouch>
     <option_psvita_revision_version>0</option_psvita_revision_version>
-    <option_psvita_scale>0</option_psvita_scale>
+    <option_psvita_scale>-1</option_psvita_scale>
     <option_psvita_texture_page>2048</option_psvita_texture_page>
     <option_quitkey>true</option_quitkey>
     <option_resolution>0</option_resolution>
     <option_savekey>true</option_savekey>
-    <option_scale>0</option_scale>
+    <option_scale>-1</option_scale>
     <option_scaleprogress>true</option_scaleprogress>
     <option_sci_UseSCI>0</option_sci_UseSCI>
     <option_sci_serverLocation></option_sci_serverLocation>
-    <option_screenkey>False</option_screenkey>
+    <option_screenkey>True</option_screenkey>
     <option_screenshotkey>true</option_screenshotkey>
     <option_shortcircuit>True</option_shortcircuit>
     <option_showcursor>True</option_showcursor>
@@ -499,11 +469,11 @@
     <option_version>100</option_version>
     <option_version_build>0</option_version_build>
     <option_version_company></option_version_company>
-    <option_version_copyright></option_version_copyright>
+    <option_version_copyright>YellowAfterlife</option_version_copyright>
     <option_version_description></option_version_description>
     <option_version_major>1</option_version_major>
     <option_version_minor>0</option_version_minor>
-    <option_version_product></option_version_product>
+    <option_version_product>window_frame</option_version_product>
     <option_version_release>0</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
@@ -579,7 +549,7 @@
     <option_windows_alternate_sync_method>False</option_windows_alternate_sync_method>
     <option_windows_build_version>0</option_windows_build_version>
     <option_windows_company_info></option_windows_company_info>
-    <option_windows_copyright_info></option_windows_copyright_info>
+    <option_windows_copyright_info>YellowAfterlife</option_windows_copyright_info>
     <option_windows_create_textures_on_demand>False</option_windows_create_textures_on_demand>
     <option_windows_description_info></option_windows_description_info>
     <option_windows_enable_steam>0</option_windows_enable_steam>
@@ -588,7 +558,7 @@
     <option_windows_mainor_version>0</option_windows_mainor_version>
     <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
-    <option_windows_product_info></option_windows_product_info>
+    <option_windows_product_info>window_frame</option_windows_product_info>
     <option_windows_release_version>0</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
@@ -660,30 +630,30 @@
     <option_winphone_texture_page>1024</option_winphone_texture_page>
     <option_winphone_tile_type>0</option_winphone_tile_type>
     <option_writeerrors>False</option_writeerrors>
-    <option_xbone_background_colour>#FFFFFF</option_xbone_background_colour>
+    <option_xbone_background_colour>#464646</option_xbone_background_colour>
     <option_xbone_build_version>0</option_xbone_build_version>
-    <option_xbone_description></option_xbone_description>
-    <option_xbone_display_name></option_xbone_display_name>
+    <option_xbone_description>Your Description</option_xbone_description>
+    <option_xbone_display_name>window_frame</option_xbone_display_name>
     <option_xbone_events_manifest_index>-1</option_xbone_events_manifest_index>
     <option_xbone_foreground_text>light</option_xbone_foreground_text>
     <option_xbone_interpolation>-1</option_xbone_interpolation>
-    <option_xbone_languages>"&lt;!-- Insert the languages your title supports here --&gt;","&lt;!-- os_get_language will only return languages that are listed --&gt;","&lt;!-- ""en"" is supported by default --&gt;","&lt;!-- Resource Language=""en-us""/ --&gt;"</option_xbone_languages>
-    <option_xbone_major_version>0</option_xbone_major_version>
+    <option_xbone_languages>"&lt;!-- Add languages you support here --&gt;","&lt;!-- os_get_language will only return languages listed --&gt;","&lt;!-- ""en"" is supported by default --&gt;","&lt;!-- See ""NLS APIs and Localization"" white paper --&gt;","&lt;!-- from developer.xboxlive.com for info --&gt;"</option_xbone_languages>
+    <option_xbone_major_version>1</option_xbone_major_version>
     <option_xbone_minor_version>0</option_xbone_minor_version>
     <option_xbone_network_manifest_file></option_xbone_network_manifest_file>
     <option_xbone_product_id></option_xbone_product_id>
-    <option_xbone_publisher></option_xbone_publisher>
-    <option_xbone_publisher_display_name></option_xbone_publisher_display_name>
+    <option_xbone_publisher>Company Name</option_xbone_publisher>
+    <option_xbone_publisher_display_name>Company Display Name</option_xbone_publisher_display_name>
     <option_xbone_ratings>"&lt;mx:Ratings Category=""game""&gt;","&lt;!-- Insert your title ratings here --&gt;","&lt;!-- See ""Title Ratings for Xbox One"" white paper --&gt;","&lt;!-- from developer.xboxlive.com for details --&gt;",&lt;/mx:Ratings&gt;</option_xbone_ratings>
     <option_xbone_require_audio_recording>False</option_xbone_require_audio_recording>
     <option_xbone_require_game_chat>False</option_xbone_require_game_chat>
     <option_xbone_require_xbox_live>True</option_xbone_require_xbox_live>
     <option_xbone_revision_version>0</option_xbone_revision_version>
     <option_xbone_scale>-1</option_xbone_scale>
-    <option_xbone_service_config_id></option_xbone_service_config_id>
-    <option_xbone_splash_screen_colour>#FFFFFF</option_xbone_splash_screen_colour>
+    <option_xbone_service_config_id>1234ABCD-1234-1234-1234-123456789ABC</option_xbone_service_config_id>
+    <option_xbone_splash_screen_colour>#464646</option_xbone_splash_screen_colour>
     <option_xbone_texture_page>1024</option_xbone_texture_page>
-    <option_xbone_title_id></option_xbone_title_id>
+    <option_xbone_title_id>1234ABCD</option_xbone_title_id>
   </Options>
   <ConfigConstants/>
 </Config>

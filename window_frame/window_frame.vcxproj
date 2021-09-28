@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{EA16C6EF-C7F3-42BC-A4AC-EBEE2E84C450}</ProjectGuid>
+    <ProjectGuid>{95CA2036-60BE-4931-8158-5B27AD7CF04F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>window_frame</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
@@ -35,7 +35,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -48,7 +48,7 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -77,9 +77,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -88,20 +90,17 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;window_frame_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>cmd /C echo Copying documentation...
-copy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
-
-cmd /C echo Running gmxgen to update extensions...
-cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)"
-</Command>
+      <Command>cmd /C postBuild.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)" "$(ConfigurationName)"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd /C preBuild.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)" "$(ConfigurationName)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -110,46 +109,52 @@ cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(Platfor
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;window_frame_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent>
-      <Command>cmd /C echo Copying documentation...
-copy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
-
-cmd /C echo Running gmxgen to update extensions...
-cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)"
-</Command>
+      <Command>cmd /C postBuild.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)" "$(ConfigurationName)"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd /C preBuild.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)" "$(ConfigurationName)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;window_frame_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <DebugInformationFormat>None</DebugInformationFormat>
+      <SDLCheck>false</SDLCheck>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>user32.lib;kernel32.lib;gdi32.lib</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <NoEntryPoint>true</NoEntryPoint>
     </Link>
     <PostBuildEvent>
-      <Command>cmd /C echo Copying documentation...
-copy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
-
-cmd /C echo Running gmxgen to update extensions...
-cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)"
-</Command>
+      <Command>cmd /C postBuild.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)" "$(ConfigurationName)"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd /C preBuild.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)" "$(ConfigurationName)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -160,50 +165,57 @@ cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(Platfor
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;window_frame_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <SDLCheck>false</SDLCheck>
+      <ExceptionHandling>false</ExceptionHandling>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <FloatingPointExceptions>false</FloatingPointExceptions>
+      <CreateHotpatchableImage>false</CreateHotpatchableImage>
+      <OmitFramePointers>false</OmitFramePointers>
+      <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <AdditionalDependencies>user32.lib;kernel32.lib;gdi32.lib</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <NoEntryPoint>true</NoEntryPoint>
     </Link>
     <PostBuildEvent>
-      <Command>cmd /C echo Copying documentation...
-copy /y "$(SolutionDir)export\$(AssemblyName).html" "$(SolutionDir)$(AssemblyName).gmx\datafiles\$(AssemblyName).html"
-
-cmd /C echo Running gmxgen to update extensions...
-cmd /C runGmxGen.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)"
-</Command>
+      <Command>cmd /C postBuild.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)" "$(ConfigurationName)"</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>cmd /C preBuild.bat "$(TargetPath)" "$(SolutionDir)" "$(ProjectDir)" "$(PlatformTarget)" "$(ConfigurationName)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="gml_ext.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="window_frame_interop.h" />
+    <ClInclude Include="window_frame.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</CompileAsManaged>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-      </PrecompiledHeader>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</CompileAsManaged>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      </PrecompiledHeader>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</CompileAsManaged>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-      </PrecompiledHeader>
-      <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</CompileAsManaged>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      </PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="window_frame.cpp" />
+    <ClCompile Include="autogen.cpp" />
+    <ClCompile Include="window_frame_core.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="window_frame_commands.cpp" />
+    <ClCompile Include="window_frame_fakefullscreen.cpp" />
+    <ClCompile Include="window_frame_init.cpp" />
+    <ClCompile Include="window_frame_misc.cpp" />
+    <ClCompile Include="window_frame_process.cpp" />
+    <ClCompile Include="window_frame_rect.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="window_frame.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="postBuild.bat" />
+    <None Include="preBuild.bat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

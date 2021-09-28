@@ -3,7 +3,7 @@
   <name>window_frame</name>
   <version>1.0.0</version>
   <packageID></packageID>
-  <ProductID></ProductID>
+  <ProductID>ACBD3CFF4E539AD869A0E8E3B4B022DD</ProductID>
   <date>18/02/17</date>
   <license>Proprietary</license>
   <description></description>
@@ -25,14 +25,11 @@
   <iosThirdPartyFrameworks/>
   <ConfigOptions>
     <Config name="Default">
-      <CopyToMask>105554172285166</CopyToMask>
+      <CopyToMask>113497714299118</CopyToMask>
     </Config>
   </ConfigOptions>
   <androidPermissions/>
   <IncludedResources>
-    <Resource>Objects\obj_window_frame_test</Resource>
-    <Resource>Rooms\rm_window_frame_test</Resource>
-    <Resource>Fonts\fnt_window_frame_test</Resource>
     <Resource>Included Files\window_frame.html</Resource>
   </IncludedResources>
   <files>
@@ -51,17 +48,8 @@
       <ProxyFiles/>
       <functions>
         <function>
-          <name>window_frame_has_focus</name>
-          <externalName>window_frame_has_focus</externalName>
-          <kind>1</kind>
-          <help>window_frame_has_focus()</help>
-          <returnType>2</returnType>
-          <argCount>0</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>window_frame_get_handle</name>
-          <externalName>window_frame_get_handle</externalName>
+          <name>window_command_check_raw</name>
+          <externalName>window_command_check_raw</externalName>
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
@@ -71,13 +59,159 @@
           </args>
         </function>
         <function>
-          <name>window_frame_get_wid</name>
-          <externalName>window_frame_get_wid</externalName>
+          <name>window_command_run_raw</name>
+          <externalName>window_command_run_raw</externalName>
           <kind>11</kind>
           <help></help>
-          <returnType>1</returnType>
-          <argCount>0</argCount>
-          <args/>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_hook_raw</name>
+          <externalName>window_command_hook_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_unhook_raw</name>
+          <externalName>window_command_unhook_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_get_hooked_raw</name>
+          <externalName>window_command_get_hooked_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_set_hooked_raw</name>
+          <externalName>window_command_set_hooked_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_get_active_raw</name>
+          <externalName>window_command_get_active_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_set_active_raw</name>
+          <externalName>window_command_set_active_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_init_raw</name>
+          <externalName>window_frame_init_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_background_raw</name>
+          <externalName>window_frame_set_background_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_region_raw</name>
+          <externalName>window_frame_set_region_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_get_rect_raw</name>
+          <externalName>window_frame_get_rect_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_rect_raw</name>
+          <externalName>window_frame_set_rect_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_min_size_raw</name>
+          <externalName>window_frame_set_min_size_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_max_size_raw</name>
+          <externalName>window_frame_set_max_size_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
         </function>
         <function>
           <name>window_frame_set_visible_raw</name>
@@ -89,6 +223,131 @@
           <args>
             <arg>2</arg>
           </args>
+        </function>
+        <function>
+          <name>window_frame_set_caption</name>
+          <externalName>window_frame_set_caption</externalName>
+          <kind>1</kind>
+          <help>window_frame_set_caption(text)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_sync_icons</name>
+          <externalName>window_frame_sync_icons</externalName>
+          <kind>1</kind>
+          <help>window_frame_sync_icons()-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_preinit_raw</name>
+          <externalName>window_frame_preinit_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_get_fakefullscreen</name>
+          <externalName>window_frame_get_fakefullscreen</externalName>
+          <kind>1</kind>
+          <help>window_frame_get_fakefullscreen()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_set_fakefullscreen</name>
+          <externalName>window_frame_set_fakefullscreen</externalName>
+          <kind>1</kind>
+          <help>window_frame_set_fakefullscreen(full)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_has_focus</name>
+          <externalName>window_frame_has_focus</externalName>
+          <kind>1</kind>
+          <help>window_frame_has_focus()-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_get_handle</name>
+          <externalName>window_frame_get_handle</externalName>
+          <kind>1</kind>
+          <help>window_frame_get_handle(out) : (buffer_addr:ptr)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_get_wid</name>
+          <externalName>window_frame_get_wid</externalName>
+          <kind>1</kind>
+          <help>window_frame_get_wid()</help>
+          <returnType>1</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_get_topmost_raw</name>
+          <externalName>window_get_topmost_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_set_topmost_raw</name>
+          <externalName>window_set_topmost_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_is_maximized</name>
+          <externalName>window_is_maximized</externalName>
+          <kind>1</kind>
+          <help>window_is_maximized()</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_redraw</name>
+          <externalName>window_frame_redraw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_force_focus</name>
+          <externalName>window_frame_force_focus</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
         </function>
         <function>
           <name>window_frame_get_width</name>
@@ -126,253 +385,48 @@
           <argCount>0</argCount>
           <args/>
         </function>
-        <function>
-          <name>window_frame_get_rect_raw</name>
-          <externalName>window_frame_get_rect_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>1</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_set_rect</name>
-          <externalName>window_frame_set_rect</externalName>
-          <kind>1</kind>
-          <help>window_frame_set_rect(x, y, w, h)</help>
-          <returnType>2</returnType>
-          <argCount>4</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_get_fakefullscreen</name>
-          <externalName>window_frame_get_fakefullscreen</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>0</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>window_frame_set_fakefullscreen</name>
-          <externalName>window_frame_set_fakefullscreen</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_set_region</name>
-          <externalName>window_frame_set_region</externalName>
-          <kind>1</kind>
-          <help>window_frame_set_region(x, y, w, h)</help>
-          <returnType>2</returnType>
-          <argCount>4</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_set_caption</name>
-          <externalName>window_frame_set_caption</externalName>
-          <kind>1</kind>
-          <help>window_frame_set_caption(text)</help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>1</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_run_raw</name>
-          <externalName>window_command_run_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>2</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_hook_raw</name>
-          <externalName>window_command_hook_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_unhook_raw</name>
-          <externalName>window_command_unhook_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_get_active_raw</name>
-          <externalName>window_command_get_active_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_set_active_raw</name>
-          <externalName>window_command_set_active_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>2</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_check</name>
-          <externalName>window_command_check</externalName>
-          <kind>1</kind>
-          <help>window_command_check(button) : Returns whether the given button was pressed since the last call to this function.</help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_get_topmost</name>
-          <externalName>window_get_topmost</externalName>
-          <kind>1</kind>
-          <help>window_get_topmost()</help>
-          <returnType>2</returnType>
-          <argCount>0</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>window_set_topmost</name>
-          <externalName>window_set_topmost</externalName>
-          <kind>1</kind>
-          <help>window_set_topmost(stayontop)</help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_set_background</name>
-          <externalName>window_frame_set_background</externalName>
-          <kind>1</kind>
-          <help>window_frame_set_background(color)</help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_set_min_size</name>
-          <externalName>window_frame_set_min_size</externalName>
-          <kind>1</kind>
-          <help>window_frame_set_min_size(minWidth, minHeight)</help>
-          <returnType>2</returnType>
-          <argCount>2</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_set_max_size</name>
-          <externalName>window_frame_set_max_size</externalName>
-          <kind>1</kind>
-          <help>window_frame_set_max_size(maxWidth, maxHeight)</help>
-          <returnType>2</returnType>
-          <argCount>2</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_set_caption_visible</name>
-          <externalName>window_set_caption_visible</externalName>
-          <kind>1</kind>
-          <help>window_set_caption_visible(enable)</help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_init_raw</name>
-          <externalName>window_frame_init_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>2</argCount>
-          <args>
-            <arg>1</arg>
-            <arg>1</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_cleanup_raw</name>
-          <externalName>window_frame_cleanup_raw</externalName>
-          <kind>11</kind>
-          <help></help>
-          <returnType>2</returnType>
-          <argCount>0</argCount>
-          <args/>
-        </function>
       </functions>
       <constants/>
     </file>
     <file>
       <filename>window_frame.gml</filename>
       <origname>extensions\gml.gml</origname>
-      <init>window_frame_init</init>
-      <final>window_frame_cleanup</final>
+      <init></init>
+      <final></final>
       <kind>2</kind>
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
-          <CopyToMask>105554172285166</CopyToMask>
+          <CopyToMask>9223372036854775807</CopyToMask>
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
       <functions>
         <function>
-          <name>window_frame_init</name>
-          <externalName>window_frame_init</externalName>
+          <name>window_frame_preinit</name>
+          <externalName>window_frame_preinit</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_prepare_buffer</name>
+          <externalName>window_frame_prepare_buffer</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_init_auto</name>
+          <externalName>window_frame_init_auto</externalName>
           <kind>2</kind>
-          <help>window_frame_init()</help>
+          <help>window_frame_init_auto()</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -390,7 +444,7 @@
           <name>window_frame_get_visible</name>
           <externalName>window_frame_get_visible</externalName>
           <kind>2</kind>
-          <help>window_frame_get_visible(): Returns whether the frame is currently on.</help>
+          <help>window_frame_get_visible()-&gt;bool</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
@@ -399,7 +453,7 @@
           <name>window_frame_set_visible</name>
           <externalName>window_frame_set_visible</externalName>
           <kind>2</kind>
-          <help>window_frame_set_visible(visible): Turns the frame on/off.</help>
+          <help>window_frame_set_visible(visible:bool)</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -407,13 +461,15 @@
           </args>
         </function>
         <function>
-          <name>window_frame_get_rect</name>
-          <externalName>window_frame_get_rect</externalName>
-          <kind>2</kind>
-          <help>window_frame_get_rect(): Returns an array of x, y, width, height</help>
+          <name>window_frame_set_visible_raw1</name>
+          <externalName>window_frame_set_visible_raw1</externalName>
+          <kind>11</kind>
+          <help></help>
           <returnType>2</returnType>
-          <argCount>0</argCount>
-          <args/>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
         </function>
         <function>
           <name>window_frame_set_fullscreen</name>
@@ -436,73 +492,30 @@
           <args/>
         </function>
         <function>
-          <name>window_command_hook</name>
-          <externalName>window_command_hook</externalName>
+          <name>window_get_topmost</name>
+          <externalName>window_get_topmost</externalName>
           <kind>2</kind>
-          <help>window_command_hook(index): Hooks the specified command </help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_unhook</name>
-          <externalName>window_command_unhook</externalName>
-          <kind>2</kind>
-          <help>window_command_unhook(index):</help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_run</name>
-          <externalName>window_command_run</externalName>
-          <kind>2</kind>
-          <help>window_command_run(index, param = 0):</help>
-          <returnType>2</returnType>
-          <argCount>-1</argCount>
-          <args/>
-        </function>
-        <function>
-          <name>window_command_get_active</name>
-          <externalName>window_command_get_active</externalName>
-          <kind>2</kind>
-          <help>window_command_get_active(command): Returns whether the given command is currently available.</help>
-          <returnType>2</returnType>
-          <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_command_set_active</name>
-          <externalName>window_command_set_active</externalName>
-          <kind>2</kind>
-          <help>window_command_set_active(command, status:bool): Enables/disables the command. Returns -1 if not possible.</help>
-          <returnType>2</returnType>
-          <argCount>2</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
-        </function>
-        <function>
-          <name>window_frame_cleanup</name>
-          <externalName>window_frame_cleanup</externalName>
-          <kind>11</kind>
-          <help></help>
+          <help>window_get_topmost()-&gt;bool</help>
           <returnType>2</returnType>
           <argCount>0</argCount>
           <args/>
+        </function>
+        <function>
+          <name>window_set_topmost</name>
+          <externalName>window_set_topmost</externalName>
+          <kind>2</kind>
+          <help>window_set_topmost(stayontop)</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
         </function>
       </functions>
       <constants>
         <constant>
           <name>window_frame_is_ready</name>
-          <value>global.window_frame_ready</value>
+          <value>global.__window_frame_ready</value>
           <hidden>0</hidden>
         </constant>
         <constant>
@@ -538,11 +551,11 @@
       </constants>
     </file>
     <file>
-      <filename>window_frame_host.exe</filename>
-      <origname>extensions\window_frame_host.exe</origname>
+      <filename>autogen.gml</filename>
+      <origname>extensions\autogen.gml</origname>
       <init></init>
       <final></final>
-      <kind>4</kind>
+      <kind>2</kind>
       <uncompress>0</uncompress>
       <ConfigOptions>
         <Config name="Default">
@@ -550,7 +563,183 @@
         </Config>
       </ConfigOptions>
       <ProxyFiles/>
-      <functions/>
+      <functions>
+        <function>
+          <name>window_command_check</name>
+          <externalName>window_command_check</externalName>
+          <kind>2</kind>
+          <help>window_command_check(button:int)-&gt;number</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_run</name>
+          <externalName>window_command_run</externalName>
+          <kind>2</kind>
+          <help>window_command_run(command:int, lParam:int = 0)-&gt;int</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_command_hook</name>
+          <externalName>window_command_hook</externalName>
+          <kind>2</kind>
+          <help>window_command_hook(button:int)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_unhook</name>
+          <externalName>window_command_unhook</externalName>
+          <kind>2</kind>
+          <help>window_command_unhook(button:int)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_get_hooked</name>
+          <externalName>window_command_get_hooked</externalName>
+          <kind>2</kind>
+          <help>window_command_get_hooked(button:int)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_set_hooked</name>
+          <externalName>window_command_set_hooked</externalName>
+          <kind>2</kind>
+          <help>window_command_set_hooked(button:int, hook:bool)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_get_active</name>
+          <externalName>window_command_get_active</externalName>
+          <kind>2</kind>
+          <help>window_command_get_active(command:int)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_command_set_active</name>
+          <externalName>window_command_set_active</externalName>
+          <kind>2</kind>
+          <help>window_command_set_active(command:int, val:bool)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_init</name>
+          <externalName>window_frame_init</externalName>
+          <kind>2</kind>
+          <help>window_frame_init(x:int, y:int, w:int, h:int, title:string)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>5</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_background</name>
+          <externalName>window_frame_set_background</externalName>
+          <kind>2</kind>
+          <help>window_frame_set_background(color:int)-&gt;number </help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_region</name>
+          <externalName>window_frame_set_region</externalName>
+          <kind>2</kind>
+          <help>window_frame_set_region(x:int, y:int, width:int, height:int)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>4</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_get_rect</name>
+          <externalName>window_frame_get_rect</externalName>
+          <kind>2</kind>
+          <help>window_frame_get_rect()-&gt;</help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_frame_set_rect</name>
+          <externalName>window_frame_set_rect</externalName>
+          <kind>2</kind>
+          <help>window_frame_set_rect(x:int, y:int, width:int, height:int)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>4</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_min_size</name>
+          <externalName>window_frame_set_min_size</externalName>
+          <kind>2</kind>
+          <help>window_frame_set_min_size(minWidth:int, minHeight:int)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_frame_set_max_size</name>
+          <externalName>window_frame_set_max_size</externalName>
+          <kind>2</kind>
+          <help>window_frame_set_max_size(maxWidth:int, maxHeight:int)-&gt;bool</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+      </functions>
       <constants/>
     </file>
   </files>

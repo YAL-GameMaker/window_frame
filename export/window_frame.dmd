@@ -6,11 +6,47 @@
 ```setmd intro
 This is a "cheat sheet" for Window Freeze Fix extension by YellowAfterlife.  
 The extension can be downloaded from [itch.io](https://yellowafterlife.itch.io/window-freeze-fix).  
-Source code can be found on [BitBucket](https://bitbucket.org/yal_cc/window_frame/).  
-An up-to-date version of this document can always be found [online](https://yal.cc/r/17/window_frame/). 
+Source code can be found on [GitHub](https://github.com/YAL-GameMaker/window_frame).  
+An up-to-date version of this document can always be found [online](https://yal.cc/docs/gm/window_freeze_fix). 
 ```
-#[Terminology](window_frame_terms) {
-	Here, "the frame" is the helper window that is being displayed around your game.
+#[Premise](premise) {
+	This extension eliminates a certain caveat in GameMaker where the window ceases operation while
+	being dragged around.
+	
+	This can be desirable for applications that should not be easily interrupted.
+}
+#[Setting up](setup) {
+	##{
+		-	Enable "Borderless window" in Game Options - Windows - Graphics (GMS2)
+			or Global Game Settings - Windows - Graphics (GMS1).
+		-	Import the extension either directly (`gmez` for GMS1, `yymp` for GMS2.2, `yymps` for GMS2.3+)
+			or by picking Add Existing and taking it from the sample projects on GitHub.
+		-	Call `window_frame_update()` in a Step event of a persistent object.
+	}
+}
+#[Things To Be Aware Of](disclaimers) {
+	Since the extension's initial release in 2017 it has been established
+	that this isn't such a good idea: --{
+		-	An extra window may break other extensions that rely on manipulating the game's window.
+		-	Windows has various undocumented, buggy window behaviours.  
+			For example, should you comment out the `window_frame_force_focus`
+			call in `window_frame.gml`, after entering and exiting fullscreen something strange
+			will happen to the frame window after the game's window is clicked, causing it to
+			become unfocusable and unable to process window button (min/max/close) clicks.
+		-	Various game overlays (such as Steam overlay) are big black boxes and do whatever
+			they want - for example, it is possible to softlock your game by forcibly opening
+			the overlay when the game does not react to the overlay shortcut.
+		-	Use of an extra window breaks XInput gamepad polling, which is addressed by the second
+			bundled extension.
+		-	Use of an extra window also breaks DirectInput gamepad polling, which is not addressable
+			unless you can figure out how GameMaker uses DirectInput API to hook the functions
+			and enforce "global" polling mode.
+		-	(probably more things that I forgot about)
+	}
+	All in all, unless your application fits the narrow critera where above are acceptable
+	sacrifices (read: it is probably _not_ a videogame) *or* you have the intricate knowledge
+	of WinAPI required to attempt resolving these issues, I suggest that you *do not*
+	use this extension.
 }
 #[Size and state]() {
 	#[window_frame_update()]() {
@@ -19,11 +55,11 @@ An up-to-date version of this document can always be found [online](https://yal.
 		Manages startup and sync (e.g. hiding/unhiding the frame as the game enters/exits fullscreen).
 	}
 	---
-	#[window_frame_get_visible()->visible?]() {
-		Returns whether the frame is currently being shown.
-	}
 	#[window_frame_set_visible(visible)]() {
 		Turns the frame on/off.
+	}
+	#[window_frame_get_visible()->bool]() {
+		Returns whether the frame is currently being shown.
 	}
 	---
 	#[window_frame_set_fullscreen(enable)]() {
@@ -33,12 +69,19 @@ An up-to-date version of this document can always be found [online](https://yal.
 		or you may land yourself or your project's users in an unusual situation
 		involving a fullscreen window that is click-through and cannot be minimized.
 	}
-	#[window_frame_get_fullscreen()]() {
-		Counterpart of above function.
+	#[window_frame_get_fullscreen()->bool]() {
+		Counterpart of the above function.
 	}
 	---
 	#[window_frame_has_focus()->focus?]() {
 		Equivalent to built-in `window_has_focus`, but counts the frame too.
+	}
+	#[window_is_maximized()->bool]() {
+		Returns whether the window (or the frame) is formally maximized.
+		
+		Note that occupying the entire display area is not the same as maximizing the window,
+		and this will only change to `true` when clicking the "maximize" button
+		or [invoking](window_command_run) the command.
 	}
 	---
 	#[window_frame_get_x()->x]() {
@@ -104,53 +147,72 @@ An up-to-date version of this document can always be found [online](https://yal.
 		}
 		```
 	}
-	---
+}
+#[Extras]() {
 	#[window_frame_set_background(color)]() {
 		Sets the background color shown on the portions of the frame window not occupied by your game. Can be set to -1 to not draw anything there.
 		```
 		window_frame_set_background(make_color_rgb(136, 158, 197));
 		```
 	}
+	
 	#[window_frame_set_caption(text)]() {
 		Like `window_set_caption`, but for the frame.
 	}
-	#[window_set_caption_visible(enable]() {
-		This function does not seem to work correctly, but you might find yourself
-		amused by Windows' indecisiveness in whether it wants to draw the
-		window caption or not.
+	#[window_frame_sync_icons()]() {
+		If you are using extensions that change the window icon,
+		you can call this function afterwards to carry them over to the frame window.
+		
+		(note: copies raw `HICON` IDs, doesn't store bitmaps)
 	}
+	---
+	#[window_set_topmost(enable)]() {
+		Changes whether the window (game or frame) will stay on top of other windows.
+		
+		It is most likely possible to break something with this function and it should not
+		generally be used in videogames.
+	}
+	#[window_get_topmost()->bool]() {
+		Returns whether the window (game or frame) is currently marked as stay-on-top.
+	}
+	---
 }
 #[Window Commands block](window_command) {
 	The following mirror [my other extension](https://yellowafterlife.itch.io/gamemaker-window-commands):
 	
-	Supported command constants:
-	#[window_command_close](){}
-	#[window_command_maximize](){}
-	#[window_command_minimize](){}
-	#[window_command_restore](){
-		The button for un-maximizing the window.
-		
+	Supported command constants: --{
+	- `window_command_close`
+	- `window_command_maximize`
+	- `window_command_minimize`
+	- `window_command_restore`\
+		The button for un-maximizing the window.\
 		Disabling this can be generally considered somewhat evil.
-	}
-	#[window_command_resize](){
+	- `window_command_resize`\
 		If disabled, the window cannot be resized.
-	}
-	#[window_command_move](){
+	- `window_command_move`\
 		If disabled, the window cannot be dragged around.
+	- More command IDs can be found on
+		[MSDN](https://docs.microsoft.com/en-us/windows/win32/menurc/wm-syscommand)
+		(used as `0xF060` etc.)
 	}
 	
-	Enabling/disabling:
-	#[window_command_set_active(command, enable)]() {
+	State:
+	#[window_command_set_active(command, enable)->bool]() {
 		Enables or disables a command.\
 		For example, for buttons this grays out the button.
 		
-		Returns the new value or -1 if the command cannot be manipulated.
+		Returns whether succeeded.
+		
+		Fails if the extension doesn't have a meaningful way of disabling the said command
+		(in which case you should use hooks instead).
 		
 		So
 		```
 		window_command_set_active(window_command_minimize, 0);
 		```
-		would disable the ability to minimize the window
+		would disable the ability to minimize the window.
+		
+		Note that a disabled (or hooked) command can still be ran via [window_command_run].
 	}
 	#[window_command_get_active(command)->enabled?]() {
 		Returns whether a command is currently enabled, or -1 if unknown.
@@ -164,20 +226,55 @@ An up-to-date version of this document can always be found [online](https://yal.
 	#[window_command_unhook(command)]() {
 		Un-hooks the specified command, allowing it to be performed as usual.
 	}
+	#[window_command_set_hooked(command, enable)]() {
+		A convenience function for two of above.
+	}
+	#[window_command_get_hooked(command)->bool]() {
+		Returns whether the specified command is currently hooked.
+	}
 	#[window_command_check(command)->was pressed?]() {
 		Returns whether the given command's button was pressed since the last call to this function.
 	}
-	#[window_command_run(index, param = 0)]() {
+	Invocation:
+	#[window_command_run(wParam, lParam = 0)]() {
 		Runs the specified command, regardless of whether it is currently hooked.
 		
 		This essentially invokes [WM_SYSCOMMAND](https://docs.microsoft.com/en-us/windows/win32/menurc/wm-syscommand) on the frame.
 		
-		`param`, if specified, is a raw `lParam` value, while `index` is `wParam`.
+		`lParam` is optional since for most (all?) commands it contains the mouse coordinates
+		and is not used by the command processor.
 		
 		So
 		```
 		window_command_run(window_command_minimize);
 		```
 		would minimize the window when invoked.
+		
+		*NB!* Many commands cannot be ran if a mouse button is currently being held down on the window.
+		You'll want to either run commands on `mouse_check_button_released` or set a flag on press
+		and wait for release.
+	}
+}
+#[Exotic functions](exotic) {
+	#[window_frame_set_fakefullscreen(enable)]() {
+		[Samuel](https://github.com/time-killer-games)'s borderless fullscreen implementation
+		for the video player extension.
+		
+		I _think_ this implies disabling the frame yourself beforehand.
+	}
+	#[window_frame_get_fakefullscreen()->bool]() {
+		Counterpart of above function.
+	}
+	---
+	#[window_frame_get_handle(buffer_addr)]() {
+		Takes a `buffer_get_address` of a buffer and pokes the frame's HWND to
+		beginning of it as `buffer_u64`.
+		
+		Rest assured, the buffer should be at least 8 bytes long or your game will hard crash.
+	}
+	#[window_frame_get_wid()->string]() {
+		Returns the frame's HWND (a 64-bit integer) _as a string_.
+		
+		You should subsequently call `int64` on the result to convert it to an actual int64.
 	}
 }
