@@ -17,66 +17,81 @@
   "installdir": "",
   "files": [
     {"filename":"window_frame.dll","origname":"extensions\\window_frame.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"externalName":"window_command_check_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_command_check_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_command_check_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_command_run_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_command_run_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_command_run_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_command_hook_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_command_hook_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_command_hook_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_command_unhook_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_command_unhook_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_command_unhook_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_command_get_hooked_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_command_get_hooked_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_command_get_hooked_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_command_set_hooked_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_command_set_hooked_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_command_set_hooked_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_command_get_active_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_command_get_active_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_command_get_active_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_command_set_active_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_command_set_active_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_command_set_active_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_init_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
+        {"externalName":"window_frame_init_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":3,"args":[
             1,
+            2,
             1,
           ],"resourceVersion":"1.0","name":"window_frame_init_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_set_background_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_set_background_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_frame_set_background_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_set_region_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_set_region_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_frame_set_region_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_get_rect_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_get_rect_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_frame_get_rect_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_set_rect_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_set_rect_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_frame_set_rect_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_set_min_size_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_set_min_size_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_frame_set_min_size_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_set_max_size_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_set_max_size_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
             1,
+            2,
           ],"resourceVersion":"1.0","name":"window_frame_set_max_size_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"window_frame_set_visible_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
             2,
           ],"resourceVersion":"1.0","name":"window_frame_set_visible_raw","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_set_caption","kind":1,"help":"window_frame_set_caption(text)->bool","hidden":false,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_set_caption","kind":1,"help":"window_frame_set_caption()->bool","hidden":false,"returnType":2,"argCount":1,"args":[
             1,
           ],"resourceVersion":"1.0","name":"window_frame_set_caption","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"window_frame_sync_icons","kind":1,"help":"window_frame_sync_icons()->bool","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"window_frame_sync_icons","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"window_frame_preinit_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"window_frame_preinit_raw","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"window_frame_get_fakefullscreen","kind":1,"help":"window_frame_get_fakefullscreen()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"window_frame_get_fakefullscreen","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_set_fakefullscreen","kind":1,"help":"window_frame_set_fakefullscreen(full)","hidden":false,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_set_fakefullscreen","kind":1,"help":"window_frame_set_fakefullscreen()","hidden":false,"returnType":2,"argCount":1,"args":[
             2,
           ],"resourceVersion":"1.0","name":"window_frame_set_fakefullscreen","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"window_frame_has_focus","kind":1,"help":"window_frame_has_focus()->bool","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"window_frame_has_focus","tags":[],"resourceType":"GMExtensionFunction",},
-        {"externalName":"window_frame_get_handle","kind":1,"help":"window_frame_get_handle(out) : (buffer_addr:ptr)->bool","hidden":false,"returnType":2,"argCount":1,"args":[
+        {"externalName":"window_frame_get_handle","kind":1,"help":"window_frame_get_handle() : (buffer_addr:ptr)->bool","hidden":false,"returnType":2,"argCount":1,"args":[
             1,
           ],"resourceVersion":"1.0","name":"window_frame_get_handle","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"window_frame_get_wid","kind":1,"help":"window_frame_get_wid()","hidden":false,"returnType":1,"argCount":0,"args":[],"resourceVersion":"1.0","name":"window_frame_get_wid","tags":[],"resourceType":"GMExtensionFunction",},
@@ -91,8 +106,10 @@
         {"externalName":"window_frame_get_height","kind":1,"help":"window_frame_get_height()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"window_frame_get_height","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"window_frame_get_x","kind":1,"help":"window_frame_get_x()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"window_frame_get_x","tags":[],"resourceType":"GMExtensionFunction",},
         {"externalName":"window_frame_get_y","kind":1,"help":"window_frame_get_y()","hidden":false,"returnType":2,"argCount":0,"args":[],"resourceVersion":"1.0","name":"window_frame_get_y","tags":[],"resourceType":"GMExtensionFunction",},
-      ],"constants":[],"ProxyFiles":[
-        {"TargetMask":6,"resourceVersion":"1.0","name":"window_frame_x64.dll","tags":[],"resourceType":"GMProxyFile",},
+      ],"constants":[
+        
+      ],"ProxyFiles":[
+        {"name":"window_frame_x64.dll","tags":[],"resourceVersion":"1.0","resourceType":"GMProxyFile","TargetMask":6,},
       ],"copyToTargets":9223372036854775807,"order":[
         {"name":"window_command_check_raw","path":"extensions/window_frame/window_frame.yy",},
         {"name":"window_command_run_raw","path":"extensions/window_frame/window_frame.yy",},
@@ -225,7 +242,9 @@
             2,
             2,
           ],"resourceVersion":"1.0","name":"window_frame_set_max_size","tags":[],"resourceType":"GMExtensionFunction",},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
+      ],"constants":[
+        
+      ],"ProxyFiles":[],"copyToTargets":-1,"order":[
         {"name":"window_command_check","path":"extensions/window_frame/window_frame.yy",},
         {"name":"window_command_run","path":"extensions/window_frame/window_frame.yy",},
         {"name":"window_command_hook","path":"extensions/window_frame/window_frame.yy",},

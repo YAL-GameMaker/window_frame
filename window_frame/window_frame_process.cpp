@@ -19,10 +19,10 @@ static HWND get_game_hwnd() {
 }
 static DWORD wait_thread_id;
 static HANDLE wait_thread_h;
-static int min_width = 80, min_height = 60, max_width = -1, max_height = -1;
-static HBRUSH background_brush = NULL;
+static int min_width, min_height, max_width, max_height;
+static HBRUSH background_brush;
 
-static bool hook_syscommands = true;
+static bool hook_syscommands;
 LRESULT CALLBACK FrameWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	trace_winmsg("frame", message, wParam, lParam);
 	switch (message) {
@@ -129,7 +129,19 @@ static DWORD WINAPI wait_for_exit(void* _) {
 	}
 }
 
+static void init() {
+	blocked_syscommands.init();
+	hooked_syscommands.init();
+	min_width = 80;
+	min_height = 60;
+	max_width = -1;
+	max_height = -1;
+	background_brush = NULL;
+	hook_syscommands = true;
+}
+
 extern "C" __declspec(dllexport) void frame_process() {
+	init();
 	SetProcessDPIAware();
 	//
 	auto hInstance = GetModuleHandle(NULL);

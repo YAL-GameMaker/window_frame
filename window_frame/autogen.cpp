@@ -1,15 +1,15 @@
 #include "gml_ext.h"
 extern double window_command_check(int button);
-dllx double window_command_check_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_command_check_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_button;
 	_arg_button = _in.read<int>();
 	return window_command_check(_arg_button);
 }
 
 extern int window_command_run(int command, int lParam);
-dllx double window_command_run_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_command_run_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_command;
 	_arg_command = _in.read<int>();
 	int _arg_lParam;
@@ -20,32 +20,32 @@ dllx double window_command_run_raw(void* _ptr) {
 }
 
 extern bool window_command_hook(int button);
-dllx double window_command_hook_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_command_hook_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_button;
 	_arg_button = _in.read<int>();
 	return window_command_hook(_arg_button);
 }
 
 extern bool window_command_unhook(int button);
-dllx double window_command_unhook_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_command_unhook_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_button;
 	_arg_button = _in.read<int>();
 	return window_command_unhook(_arg_button);
 }
 
 extern bool window_command_get_hooked(int button);
-dllx double window_command_get_hooked_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_command_get_hooked_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_button;
 	_arg_button = _in.read<int>();
 	return window_command_get_hooked(_arg_button);
 }
 
 extern bool window_command_set_hooked(int button, bool hook);
-dllx double window_command_set_hooked_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_command_set_hooked_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_button;
 	_arg_button = _in.read<int>();
 	bool _arg_hook;
@@ -54,16 +54,16 @@ dllx double window_command_set_hooked_raw(void* _ptr) {
 }
 
 extern bool window_command_get_active(int command);
-dllx double window_command_get_active_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_command_get_active_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_command;
 	_arg_command = _in.read<int>();
 	return window_command_get_active(_arg_command);
 }
 
 extern bool window_command_set_active(int command, bool val);
-dllx double window_command_set_active_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_command_set_active_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_command;
 	_arg_command = _in.read<int>();
 	bool _arg_val;
@@ -72,8 +72,8 @@ dllx double window_command_set_active_raw(void* _ptr) {
 }
 
 extern bool window_frame_init(GAME_HWND hwnd, int x, int y, int w, int h, const char* title);
-dllx double window_frame_init_raw(void* _ptr, const char* _arg_title) {
-	gml_istream _in(_ptr);
+dllx double window_frame_init_raw(void* _in_ptr, double _in_ptr_size, char* _arg_title) {
+	gml_istream _in(_in_ptr);
 	GAME_HWND _arg_hwnd;
 	_arg_hwnd = (GAME_HWND)_in.read<uint64_t>();
 	int _arg_x;
@@ -88,16 +88,16 @@ dllx double window_frame_init_raw(void* _ptr, const char* _arg_title) {
 }
 
 extern double window_frame_set_background(int color);
-dllx double window_frame_set_background_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_frame_set_background_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_color;
 	_arg_color = _in.read<int>();
 	return window_frame_set_background(_arg_color);
 }
 
 extern bool window_frame_set_region(int x, int y, int width, int height);
-dllx double window_frame_set_region_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_frame_set_region_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_x;
 	_arg_x = _in.read<int>();
 	int _arg_y;
@@ -110,17 +110,17 @@ dllx double window_frame_set_region_raw(void* _ptr) {
 }
 
 extern tuple<int, int, int, int> window_frame_get_rect();
-dllx double window_frame_get_rect_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_frame_get_rect_raw(void* _inout_ptr, double _inout_ptr_size) {
+	gml_istream _in(_inout_ptr);
 	tuple<int, int, int, int> _ret = window_frame_get_rect();
-	gml_ostream _out(_ptr);
+	gml_ostream _out(_inout_ptr);
 	_out.write_tuple<int, int, int, int>(_ret);
 	return 1;
 }
 
 extern bool window_frame_set_rect(int x, int y, int width, int height);
-dllx double window_frame_set_rect_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_frame_set_rect_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_x;
 	_arg_x = _in.read<int>();
 	int _arg_y;
@@ -133,8 +133,8 @@ dllx double window_frame_set_rect_raw(void* _ptr) {
 }
 
 extern bool window_frame_set_min_size(int minWidth, int minHeight);
-dllx double window_frame_set_min_size_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_frame_set_min_size_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_minWidth;
 	_arg_minWidth = _in.read<int>();
 	int _arg_minHeight;
@@ -143,8 +143,8 @@ dllx double window_frame_set_min_size_raw(void* _ptr) {
 }
 
 extern bool window_frame_set_max_size(int maxWidth, int maxHeight);
-dllx double window_frame_set_max_size_raw(void* _ptr) {
-	gml_istream _in(_ptr);
+dllx double window_frame_set_max_size_raw(void* _in_ptr, double _in_ptr_size) {
+	gml_istream _in(_in_ptr);
 	int _arg_maxWidth;
 	_arg_maxWidth = _in.read<int>();
 	int _arg_maxHeight;

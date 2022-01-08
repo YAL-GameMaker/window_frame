@@ -53,9 +53,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -64,9 +65,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -75,9 +77,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -86,9 +89,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -97,9 +101,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -108,9 +113,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -119,9 +125,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -130,9 +137,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -141,9 +149,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>2</argCount>
+          <argCount>3</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
             <arg>1</arg>
           </args>
         </function>
@@ -153,9 +162,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -164,9 +174,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -175,9 +186,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -186,9 +198,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -197,9 +210,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -208,9 +222,10 @@
           <kind>11</kind>
           <help></help>
           <returnType>2</returnType>
-          <argCount>1</argCount>
+          <argCount>2</argCount>
           <args>
             <arg>1</arg>
+            <arg>2</arg>
           </args>
         </function>
         <function>
@@ -228,7 +243,7 @@
           <name>window_frame_set_caption</name>
           <externalName>window_frame_set_caption</externalName>
           <kind>1</kind>
-          <help>window_frame_set_caption(text)-&gt;bool</help>
+          <help>window_frame_set_caption()-&gt;bool</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -266,7 +281,7 @@
           <name>window_frame_set_fakefullscreen</name>
           <externalName>window_frame_set_fakefullscreen</externalName>
           <kind>1</kind>
-          <help>window_frame_set_fakefullscreen(full)</help>
+          <help>window_frame_set_fakefullscreen()</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -286,7 +301,7 @@
           <name>window_frame_get_handle</name>
           <externalName>window_frame_get_handle</externalName>
           <kind>1</kind>
-          <help>window_frame_get_handle(out) : (buffer_addr:ptr)-&gt;bool</help>
+          <help>window_frame_get_handle() : (buffer_addr:ptr)-&gt;bool</help>
           <returnType>2</returnType>
           <argCount>1</argCount>
           <args>
@@ -467,9 +482,7 @@
           <help></help>
           <returnType>2</returnType>
           <argCount>1</argCount>
-          <args>
-            <arg>2</arg>
-          </args>
+          <args/>
         </function>
         <function>
           <name>window_frame_set_fullscreen</name>

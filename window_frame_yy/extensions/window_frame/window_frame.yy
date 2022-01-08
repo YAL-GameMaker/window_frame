@@ -41,9 +41,10 @@
                     "id": "e1f1ecaa-2a24-f1e3-173d-2591aff9bb6c",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_command_check_raw",
                     "help": "",
@@ -56,9 +57,10 @@
                     "id": "87978acc-808e-5b85-351f-cb7f43f9ff2a",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_command_run_raw",
                     "help": "",
@@ -71,9 +73,10 @@
                     "id": "184320ca-6b56-8fc0-5454-5de1b2e7e4e0",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_command_hook_raw",
                     "help": "",
@@ -86,9 +89,10 @@
                     "id": "793c25f4-7d61-196c-09d6-68dc9f3e9edd",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_command_unhook_raw",
                     "help": "",
@@ -101,9 +105,10 @@
                     "id": "b59efddb-3865-7039-cf98-d30db5d2b1c2",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_command_get_hooked_raw",
                     "help": "",
@@ -116,9 +121,10 @@
                     "id": "5b69bc6d-e616-2a5d-d373-3d45448d612b",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_command_set_hooked_raw",
                     "help": "",
@@ -131,9 +137,10 @@
                     "id": "0f1f0244-e6e8-3d0d-062c-16a29642ff22",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_command_get_active_raw",
                     "help": "",
@@ -146,9 +153,10 @@
                     "id": "7a610206-13de-e9a9-c5cd-70340dca39b5",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_command_set_active_raw",
                     "help": "",
@@ -161,9 +169,10 @@
                     "id": "f0e0fdbb-b3bd-68f2-ac86-16a29d53bb6d",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": 3,
                     "args": [
                         1,
+                        2,
                         1
                     ],
                     "externalName": "window_frame_init_raw",
@@ -177,9 +186,10 @@
                     "id": "1e0e1355-f7f9-2c1c-351f-2591a3178853",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_frame_set_background_raw",
                     "help": "",
@@ -192,9 +202,10 @@
                     "id": "62e98a8e-b68b-bcf3-69ba-2a98c8f6f5c2",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_frame_set_region_raw",
                     "help": "",
@@ -207,9 +218,10 @@
                     "id": "2d3d2066-6e60-b52f-bd97-07b38a2400d0",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_frame_get_rect_raw",
                     "help": "",
@@ -222,9 +234,10 @@
                     "id": "790ff829-aeb8-1962-0044-4a148e2b2129",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_frame_set_rect_raw",
                     "help": "",
@@ -237,9 +250,10 @@
                     "id": "d1c2ac33-0404-85f3-b672-0938c04a6469",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_frame_set_min_size_raw",
                     "help": "",
@@ -252,9 +266,10 @@
                     "id": "719d5e00-8efe-a5ab-e9e9-8efa5511a6ea",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 1,
+                    "argCount": 2,
                     "args": [
-                        1
+                        1,
+                        2
                     ],
                     "externalName": "window_frame_set_max_size_raw",
                     "help": "",
@@ -287,7 +302,7 @@
                         1
                     ],
                     "externalName": "window_frame_set_caption",
-                    "help": "window_frame_set_caption(text)->bool",
+                    "help": "window_frame_set_caption()->bool",
                     "hidden": false,
                     "kind": 1,
                     "name": "window_frame_set_caption",
@@ -347,7 +362,7 @@
                         2
                     ],
                     "externalName": "window_frame_set_fakefullscreen",
-                    "help": "window_frame_set_fakefullscreen(full)",
+                    "help": "window_frame_set_fakefullscreen()",
                     "hidden": false,
                     "kind": 1,
                     "name": "window_frame_set_fakefullscreen",
@@ -377,7 +392,7 @@
                         1
                     ],
                     "externalName": "window_frame_get_handle",
-                    "help": "window_frame_get_handle(out) : (buffer_addr:ptr)->bool",
+                    "help": "window_frame_get_handle() : (buffer_addr:ptr)->bool",
                     "hidden": false,
                     "kind": 1,
                     "name": "window_frame_get_handle",

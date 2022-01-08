@@ -61,7 +61,9 @@ private:
 	size_t _length;
 	size_t _capacity;
 public:
-	yal_set(size_t capacity = 4) {
+	yal_set() {}
+	yal_set(size_t capacity) { init(capacity); }
+	void init(size_t capacity = 4) {
 		_capacity = capacity;
 		_length = 0;
 		_arr = yal_alloc_arr<T>(_capacity);

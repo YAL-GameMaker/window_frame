@@ -4,20 +4,24 @@
     <LocalDebuggerCommand>rundll32.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArguments>$(TargetPath) frame_process</LocalDebuggerCommandArguments>
+    <NXTargetName>Default</NXTargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LocalDebuggerCommand>rundll32.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArguments>$(TargetPath) frame_process</LocalDebuggerCommandArguments>
+    <NXTargetName>Default</NXTargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LocalDebuggerCommand>rundll32.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArguments>$(TargetPath) frame_process</LocalDebuggerCommandArguments>
+    <NXTargetName>Default</NXTargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LocalDebuggerCommand>rundll32.exe</LocalDebuggerCommand>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerCommandArguments>$(TargetPath) frame_process</LocalDebuggerCommandArguments>
+    <NXTargetName>Default</NXTargetName>
   </PropertyGroup>
 </Project>

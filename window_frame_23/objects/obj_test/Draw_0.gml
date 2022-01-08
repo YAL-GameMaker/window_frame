@@ -8,6 +8,7 @@ if (tm_button("...")) {
 tm_command_toggle(window_command_close, "Close enabled");
 tm_command_toggle(window_command_minimize, "Minimize enabled");
 tm_command_toggle(window_command_maximize, "Maximize enabled");
+tm_command_toggle(window_command_resize, "Resize enabled");
 if (tm_toggle("Restore/un-max", window_is_maximized())) {
 	window_command_run(window_command_restore);
 }

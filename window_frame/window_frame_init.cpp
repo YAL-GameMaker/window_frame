@@ -120,3 +120,23 @@ dllg bool window_frame_init(GAME_HWND hwnd, int x, int y, int w, int h, const ch
 
 	return true;
 }
+
+static void init() {
+	hasFocus = false;
+	queued_syscommands.init();
+	game_blocked_syscommands.init();
+	game_hooked_syscommands.init();
+	game_hook_syscommands = true;
+}
+
+BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpReserved) {
+	switch (fdwReason) {
+		case DLL_PROCESS_ATTACH:
+			init();
+			break;
+		case DLL_PROCESS_DETACH:
+			//
+			break;
+	}
+	return TRUE;
+}

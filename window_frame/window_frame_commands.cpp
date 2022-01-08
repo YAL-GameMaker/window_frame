@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "window_frame.h"
-yal_set<WPARAM> queued_syscommands{};
-yal_set<WPARAM> game_blocked_syscommands{};
-yal_set<WPARAM> game_hooked_syscommands{};
-bool game_hook_syscommands = true;
+yal_set<WPARAM> queued_syscommands;
+yal_set<WPARAM> game_blocked_syscommands;
+yal_set<WPARAM> game_hooked_syscommands;
+bool game_hook_syscommands;
 // Window Commands implementation for Window Frame
 
 dllg double window_command_check(int button) {
