@@ -59,11 +59,6 @@ if (global.__window_frame_init_timer > 0) {
 	}
 }
 
-if 0 trace(
-	"fs:", window_get_fullscreen(),
-	"visible:", global.__window_frame_visible,
-	"bound:", global.__window_frame_bound
-);
 if (global.__window_frame_ready) {
 	if (window_get_fullscreen()) {
 		if (global.__window_frame_bound) {
