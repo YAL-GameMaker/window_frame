@@ -67,9 +67,9 @@ dllg bool window_frame_init(GAME_HWND hwnd, int x, int y, int w, int h, const ch
 		trace("GetEnvironmentVariable failed, error %d", GetLastError());
 		return false;
 	}
-	yal_strcat(commandLine, L"\\system32\\rundll32.exe ");
+	yal_strcat(commandLine, L"\\system32\\rundll32.exe \"");
 	yal_strcat(commandLine, dllPath);
-	yal_strcat(commandLine, L" frame_process");
+	yal_strcat(commandLine, L"\" frame_process");
 	//tracew(L"[%s]", commandLine);
 
 	STARTUPINFOW si;
