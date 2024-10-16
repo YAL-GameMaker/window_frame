@@ -3,6 +3,9 @@
 **Versions:** GameMaker: Studio, GameMaker Studio 2  
 **Platforms:** Windows, Windows (YYC)
 
+> [!IMPORTANT]  
+> Virtually every use of this extension is superseded by [Gameframe](https://github.com/YAL-GameMaker/gameframe), and in a non-fragile way - see [Things To Be Aware Of](https://yal.cc/docs/gm/window_freeze_fix/#disclaimers).
+
 This fancy extension addresses a quirk where GameMaker games cease to update while the window is being dragged around or resized.
 
 The issue is Windows-specific behaviour - unless you run game logic and rendering on separate threads, system's dragging/resizing logic overtakes anything else and no other code executes until that's done.
